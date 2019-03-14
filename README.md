@@ -1,22 +1,6 @@
-<p align="center">
-  <h1 align="center">SLFE Knowledgebase</h1>
-  <p align="center">
-    The Sustainable Local Food Enterprise system. This project is in collaboration with the ASU School of Sustainability and Leuphana University in Lueneburg, Germany.
-    <br>
-    <br>
-    <a href="#documentation"><strong>Explore Documentation »</strong></a>
-    <br>
-    
-  </p>
-</p>
+# SLFE Knowledgebase
 
-<br>
-
-## Table of contents
-
-- [Running the Project](#running-the-project)
-- [Documentation](#documentation)
-- [Licesne](#license)
+This project is in collaboration with the ASU School of Sustainability and Leuphana University in Lueneburg, Germany. 
 
 ## Running the Project
 
@@ -48,16 +32,12 @@ For testing on `localhost`, create a file named `.env` in the root directory and
 MONGODB_URI=[mongodbURI]
 ```
 1. `$ npm run dev` || `MONGODB_URI=[mongodbURI] npm run server`
-2. Browsersync can be accessed through `localhost:3000`
+2. Browsersync can be accessed through `localhost:5000`
 
 **Production Mode**
 1. `git add .`
 2. `git commit -am "new commit"`
 3. `git push heroku master`
-
-## Documentation
-
-The documentation included within this repository will guide you through the api usages and visual components available and their usage methods.
 
 ## License
 

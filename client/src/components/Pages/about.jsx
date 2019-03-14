@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
-import Navbar from '../PageComponents/Navbar'
-import Footer from '../PageComponents/Footer'
+import React, { Component } from 'react';
+import SectionTitle from '../PageComponents/SectionTitle';
+import Header from '../PageComponents/Header';
 
-class about extends Component {
-  componentDidMount() {
-    document.title = "About";
-  }
-
-  render() {
+export default function about() {
     return (
       <div >
-        <Navbar />
-        About
-      <Footer />
+        <div id="checkboxes">
+          <label>some label</label>
+          <ul>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+          </ul>
+        </div>
       </div>
-    )
-  }
+    );
 }
-
-export default about;

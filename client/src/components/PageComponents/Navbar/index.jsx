@@ -1,20 +1,22 @@
-import React from 'react'
+import React from 'react';
+import image from '../Navbar/slfe-logo.png';
 
 export default function Navbar()
 {
   return(
     <div className="navbar">
-        <div className="logo">
-            <a href="/" className="logo--link">
-                <img className="logo--image" alt="" src="https://i.imgur.com/L2kMZ75.png"/>
+        <div class="logo">
+            <a href="/" class="logo--link">
+                <img class="logo--image" src="https://i.imgur.com/L2kMZ75.png" />
             </a>
         </div>
-        <div className="nav">
-            <a href="/browse">Result</a>
+        <div class="nav">
+            <a href="/explore">Explore</a>
+            <a href="/result">Result</a>
             <a href="/about">About</a>
-            <a href="/map">Map</a>
-            <a href="/login"><i className="fa fa-sign-in"></i></a>
+            <a href="/partners">Partners</a>
+            <a href="#"><i class="fa fa-sign-in"></i></a>
         </div>
     </div>
   )
-}
+};

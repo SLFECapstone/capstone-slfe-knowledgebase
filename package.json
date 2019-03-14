@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/panza8484/capstone-slfe-knowledgebase#readme",
   "dependencies": {
-    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "dotenv": "^6.0.0",
@@ -33,7 +32,7 @@
     "nodemon": "^1.18.4"
   },
   "engines": {
-    "node": "8.12.0",
+    "node": "8.11.2",
     "npm": "6.4.1"
   }
 }

@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 const path = require('path');
 const port = process.env.PORT || 5000;
 const enterprises = require('./routes/api/enterprises');
-const domains = require('./routes/api/domains');
 
 const app = express();
 
@@ -23,7 +22,6 @@ mongoose
 
 // Use Routes
 app.use('/api/enterprises', enterprises);
-app.use('/api/domains', domains)
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
