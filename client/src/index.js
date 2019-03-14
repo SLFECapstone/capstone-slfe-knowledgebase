@@ -4,25 +4,33 @@ import './styles/main.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import explore from './components/Pages/explore.jsx';
 import about from './components/Pages/about';
-import result from './components/Pages/result.jsx';
-import solution from './components/Pages/exampleSolution.jsx';
+import login from './components/Pages/login';
+import register from './components/Pages/register';
+import mapContainer from './components/Pages/mapContainer.jsx';
+import solution from './components/Pages/solution.jsx';
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './store';
+import Browse from './components/Pages/Browse';
 import DataTest from './components/Pages/DataTest';
+import addSolution from './components/Pages/addSolution';
 //import registerServiceWorker from './registerServiceWorker';
 
 render(
   <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={explore}/>
-      <Route path='/about' component={about} />
-      <Route path='/result' component={result} />
-      <Route path='/solution' component={solution} />
-      <Provider store={store}>
-        <Route path='/test' component={DataTest} />
-      </Provider>
-    </Switch>
+    <Provider store={store}>
+      <Switch>
+        <Route path='/browse' component={Browse} />
+        <Route path='/about' component={about} />
+				<Route path='/login' component={login} />
+				<Route path='/register' component={register} />
+        <Route exact path='/' component={explore}/>
+        <Route path='/map' component={mapContainer} />
+        <Route path='/solution/add' component={addSolution} />
+        <Route path='/solution/:id' component={solution} />
+        <Route path='/test' component={DataTest}/>
+      </Switch>
+    </Provider>
   </BrowserRouter>,
   document.getElementById('root'));
 //registerServiceWorker();

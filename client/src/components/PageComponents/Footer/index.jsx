@@ -8,14 +8,11 @@ export default function Footer()
     <div>
         <footer>
             <div className="footer">
-                <div class="copyright">
+                <div className="copyright">
                     <p>Copyright © {currentYear} SFLE Knowledgebase</p>
                 </div> 
                 <div className="links">
-                    <a href="/">Contact</a>
-                    <a href="/">About</a>
-                    <a href="/">License</a>
-                    <a href="/">Research</a>
+                    <a href="/about">About</a>
                 </div>
             </div>
         </footer>

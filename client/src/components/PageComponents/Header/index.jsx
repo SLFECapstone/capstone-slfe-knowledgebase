@@ -4,12 +4,7 @@ import H3 from '../H3';
 import image from './test2.jpg'
 import PropTypes from 'prop-types';
 
-const headerBackground = styled.h3`
-  display: inline-flex;
-  width: 100%;
-  height: 200px;
-  color: white;
-`;
+
 const H2 = styled.body`
   display: inline-flex
   font-family: BentonSans Book, sans-serif;
@@ -38,14 +33,6 @@ const subSection = styled.div`
   background-color: #00796B;
 `;
 
-const clickable = styled.a`
-  font-style: bold;
-  margin-right: 10px;
-`;
-
-const handleClick = ()=> {
-  console.log("clicked");
-}
 export default function Header({subTitle})
 {
   return(
@@ -66,6 +53,9 @@ export default function Header({subTitle})
             <a
               href='/Explore'
               style={{marginRight: '15px', textDecoration: 'none', color: 'white', fontWeight: 'bold'}}>Explore</a>
+            <a
+              href='/Map'
+              style={{marginRight: '15px', textDecoration: 'none', color: 'white', fontWeight: 'bold'}}>Map</a>
           </form>
         </subSection>
       </Section>

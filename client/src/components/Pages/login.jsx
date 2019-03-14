@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import Navbar from '../PageComponents/Navbar'
+import LoginForm from '../PageComponents/LoginForm'
 import Footer from '../PageComponents/Footer'
 
-class about extends Component {
+class login extends Component {
   componentDidMount() {
-    document.title = "About";
+    document.title = "Login";
   }
 
   render() {
     return (
       <div >
-        <Navbar />
-        About
-      <Footer />
+      	<Navbar />
+      	<LoginForm />
+      	<Footer />
       </div>
     )
   }
 }
 
-export default about;
+export default login;
