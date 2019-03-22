@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -12,7 +12,7 @@ const Page = styled.div`
   width: 100%;
 `;
 
-class Paginate extends React.Component {
+class Paginate extends Component {
   constructor() {
     super();
     this.state = {

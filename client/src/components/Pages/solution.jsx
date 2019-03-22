@@ -9,12 +9,8 @@ import "react-light-accordion/demo/css/index.css";
 import { connect } from "react-redux";
 import { getByID } from "../../actions/enterpriseActions";
 import PropTypes from "prop-types";
-import { Slide } from "react-slideshow-image";
 
 class solution extends Component {
-  constructor() {
-    super();
-  }
 
   componentDidMount() {
     console.log("Component will mount");

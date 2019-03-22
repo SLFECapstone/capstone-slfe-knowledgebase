@@ -66,6 +66,23 @@ router.get('/q/:field/:value', (req, res)=>{
     .then(result => res.json(result))
 })
 
+router.post('/', (req, res) => {
+  var Name = req.body.Name
+
+  const newEnt = new Enterprise({
+    Name: req.body.Name,
+    "Responsible Organization": req.body.ResponsibleOrganization,
+    "Short Description": req.body.ShortDescription,
+    "Primary Domain": req.body.PrimaryDomain,
+    "Seconday Domain": req.body.SecondayDomain,
+    "Solution Type": req.body.SolutionType,
+    "Keyword Descriptiors": req.body.KeywordDescriptors,
+    "Date Founded": req.body.DateFounded
+  })
+
+  newEnt.save().then(enterprise => res.json(enterprise));
+})
+
 // router.post('/', (req, res) => {
 //   const newEnt = new Enterprise({
 //     ID: req.body.id,

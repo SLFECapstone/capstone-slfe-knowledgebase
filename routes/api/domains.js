@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-//Enterprise Model
+//Domain Model
 const Domain = require('../../models/domain');
 
 // @route  GET api/domains

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ENTERPRISES, GET_DOMAINS, GET_SOLUTIONS, GET_BYID, GET_FIELD,  RESPONSE_LOADING, GET_CUSTOM} from './types';
+import { GET_ENTERPRISES, GET_DOMAINS, GET_SOLUTIONS, ADD_SOLUTION, GET_BYID, GET_FIELD,  RESPONSE_LOADING, GET_CUSTOM} from './types';
 
 export const getEnterprises = () => dispatch => {  //add integration for query here
   dispatch(setResponseLoading());
@@ -35,6 +35,14 @@ export const getSolutions = () => dispatch => {  //add integration for query her
       payload: res.data
     })
   )
+};
+
+export const addSolutionFunc = (solution) => dispatch => {
+  dispatch(setResponseLoading());
+  return axios.post('/api/enterprises', solution).then(res => dispatch({
+    type: ADD_SOLUTION,
+    payload: res.data
+  }))
 };
 
 export const getField = (field, n) => dispatch => {  //add integration for query here

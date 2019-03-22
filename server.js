@@ -6,6 +6,7 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 const enterprises = require('./routes/api/enterprises');
 const domains = require('./routes/api/domains');
+const users = require('./routes/api/users');
 
 const app = express();
 
@@ -14,6 +15,9 @@ dotenv.config();
 
 //Bodyparser Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 //Connect to Mongo
 mongoose
@@ -23,7 +27,8 @@ mongoose
 
 // Use Routes
 app.use('/api/enterprises', enterprises);
-app.use('/api/domains', domains)
+app.use('/api/domains', domains);
+app.use('/api/users', users);
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
