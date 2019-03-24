@@ -12,10 +12,8 @@ const userSchema = new Schema({
   versionKey: false
 });
 
-//Potential need for password checking function to make sure passwords are secure.
-
 //Middleware to hash password upon changing entry.
-userSchema.pre('save', function(next) 
+userSchema.pre(save, function(next) 
 {
   var user = this;
 

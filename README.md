@@ -16,7 +16,7 @@
 
 - [Running the Project](#running-the-project)
 - [Documentation](#documentation)
-- [License](#license)
+- [Licesne](#license)
 
 ## Running the Project
 
