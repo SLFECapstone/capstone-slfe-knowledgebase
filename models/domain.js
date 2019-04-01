@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//Create Enterprise Schema
+//Create Domain Schema
 const domainSchema = new Schema({
   name: String,
   image: String

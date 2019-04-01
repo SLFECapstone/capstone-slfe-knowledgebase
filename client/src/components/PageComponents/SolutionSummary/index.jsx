@@ -5,9 +5,6 @@ import PropTypes from "prop-types";
 import { Slide } from "react-slideshow-image";
 
 class SolutionSummary extends Component {
-  constructor() {
-    super();
-  }
 
   componentDidMount() {
     this.props.getByID(this.props.id);

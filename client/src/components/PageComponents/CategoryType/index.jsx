@@ -46,7 +46,7 @@ export default class CategoryType extends Component {
           {this.props.image && (
             <img
               src={this.props.image}
-              alt="No image in record"
+              alt=""
               style={{ width: "100px", height: "100px" }}
             />
           )}

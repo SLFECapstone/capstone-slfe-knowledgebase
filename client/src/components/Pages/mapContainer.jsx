@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import propTypes from 'prop-types';
-import SectionTitle from '../PageComponents/SectionTitle';
 import Header from '../PageComponents/Header';
 import styled from 'styled-components';
 import Map from './map.jsx'
@@ -17,9 +14,6 @@ const Page = styled.div`
 
 class mapContainer extends Component {
 
-	constructor() {
-		super()
-	}
 	render() {
     return (
     	<div style={{display: 'flex', width:'100%'}} >

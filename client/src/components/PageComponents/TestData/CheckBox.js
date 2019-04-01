@@ -118,7 +118,7 @@ class CheckBox extends Component {
         <h1>getDomainEntries()</h1>
         <pre>{this.state.domain.map((r, index) => 
                 <label key={index}>
-                <img src={r.image}/>{r.name}
+                <img src={r.image} alt="" />{r.name}
                 <br/>
                 </label>
 

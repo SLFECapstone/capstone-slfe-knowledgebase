@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import SectionTitle from "../PageComponents/SectionTitle";
-import Header from "../PageComponents/Header";
-import SearchBar from "../PageComponents/SearchBar";
 import styled from "styled-components";
 import Footer from "../PageComponents/Footer";
 import CategoryType from "../PageComponents/CategoryType";
-import sampleImage from "./production.png";
 import PropTypes from "prop-types";
 import Search from "material-ui-search-bar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -80,7 +77,6 @@ class explore extends Component {
     var solutionTypes = [];
     if (this.state.solutionTypes) {
       for (var i = 0; i < this.state.solutionTypes.length; i++) {
-        const lab = this.state.solutionTypes[i]["Name"];
         solutionTypes.push(
           <div style={{ cursor: "pointer", marginRight: "24px" }}>
             <CategoryType
@@ -111,7 +107,6 @@ class explore extends Component {
     var popularItems = [];
     if (this.state.popularSolutions) {
       for (var i = 0; i < this.state.popularSolutions.length; i++) {
-        const lab = this.state.popularSolutions[i].Name;
         popularItems.push(
           <div style={{ padding: "5px" }}>
             <a
@@ -146,8 +141,8 @@ class explore extends Component {
         solutionTypes: data.payload
       });
     });
-    while (this.state.dataArray.loading == false) {
-      if (this.state.dataArray.loading == true) {
+    while (this.state.dataArray.loading === false) {
+      if (this.state.dataArray.loading === true) {
         break;
       }
     }
@@ -156,8 +151,6 @@ class explore extends Component {
   mapData(array) {}
 
   render() {
-    const enterprises = this.props.enterprise;
-
     const categoryList = this.getCategoryItems();
     const solutionList = this.getSolutionItems();
     const popularList = this.getPopularItems();
@@ -167,17 +160,17 @@ class explore extends Component {
         <script
           src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
           integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
           integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
         <script
           src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
           integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
 
         <div style={{ width: "100%" }}>

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import SectionTitle from "../PageComponents/SectionTitle";
-import Header from "../PageComponents/Header";
 import QueryString from "query-string";
 import styled from "styled-components";
 import ResultItem from "../PageComponents/ResultItem";
@@ -27,14 +25,6 @@ const InnerPage = styled.div`
   min-width: fit-content;
   height: 100%;
   marginLeft: 100px;
-`;
-
-const Section = styled.div`
-  display: inline-flex;
-  justify-content: space-betwen;
-  flex-direction: row;
-  margin-top: 24px;
-  height: 50px;
 `;
 
 class Browse extends Component {
@@ -131,7 +121,7 @@ class Browse extends Component {
       if (this.props.location.search) {
         let result = [];
         var duplicate = false;
-        for (var param in x) {
+        for (let param in x) {
           if (
             x[param] === event.target.name &&
             param === event.target.filterType
@@ -140,15 +130,15 @@ class Browse extends Component {
             duplicate = true;
           }
           if (
-            x[param] != event.target.name &&
+            x[param] !== event.target.name &&
             param === event.target.filterType
           ) {
             result[param] = event.target.name;
             duplicate = true;
           }
           if (
-            x[param] != event.target.name &&
-            param != event.target.filterType
+            x[param] !== event.target.name &&
+            param !== event.target.filterType
           ) {
             result[param] = x[param];
           } else {
@@ -176,7 +166,7 @@ class Browse extends Component {
       } else {
         var result = [];
 
-        for (var param in x) {
+        for (let param in x) {
           console.log("&&&&", x[param], param);
 
           if (
@@ -185,7 +175,7 @@ class Browse extends Component {
           ) {
             console.log("excluding: ", x[param]);
           } else if (
-            x[param] != event.target.name &&
+            x[param] !== event.target.name &&
             param === event.target.filterType
           ) {
             console.log("LLLAAAALAAAA");
@@ -233,7 +223,7 @@ class Browse extends Component {
       var checkboxes2 = [];
       this.state.solutionTypes.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.solutionTypes.length; i++) {
+      for (let i = 0; i < this.state.solutionTypes.length; i++) {
         checkboxes2.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -262,7 +252,7 @@ class Browse extends Component {
       var checkboxes3 = [];
       this.state.OrgEntTypes.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.OrgEntTypes.length; i++) {
+      for (let i = 0; i < this.state.OrgEntTypes.length; i++) {
         checkboxes3.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -291,7 +281,7 @@ class Browse extends Component {
       var checkboxes4 = [];
       this.state.climateZones.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.climateZones.length; i++) {
+      for (let i = 0; i < this.state.climateZones.length; i++) {
         checkboxes4.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -319,7 +309,7 @@ class Browse extends Component {
       var checkboxes5 = [];
       this.state.scopes.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.scopes.length; i++) {
+      for (let i = 0; i < this.state.scopes.length; i++) {
         checkboxes5.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -347,7 +337,7 @@ class Browse extends Component {
       var checkboxes6 = [];
       this.state.secondaryDomains.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.secondaryDomains.length; i++) {
+      for (let i = 0; i < this.state.secondaryDomains.length; i++) {
         checkboxes6.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -375,7 +365,7 @@ class Browse extends Component {
       var checkboxes7 = [];
       this.state.countries.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.countries.length; i++) {
+      for (let i = 0; i < this.state.countries.length; i++) {
         checkboxes7.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -403,7 +393,7 @@ class Browse extends Component {
       var checkboxes8 = [];
       this.state.states.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.states.length; i++) {
+      for (let i = 0; i < this.state.states.length; i++) {
         checkboxes8.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -431,7 +421,7 @@ class Browse extends Component {
       var checkboxes9 = [];
       this.state.cities.sort();
       const x = QueryString.parse(this.props.location.search);
-      for (var i = 0; i < this.state.cities.length; i++) {
+      for (let i = 0; i < this.state.cities.length; i++) {
         checkboxes9.push(
           <div style={{ marginBottom: "10px", marginLeft: "10px" }}>
             <CheckBox
@@ -568,7 +558,7 @@ class Browse extends Component {
       multipleFilters = true;
       if (this.state.solutions) {
         for (var i = 0; i < filteredData.length; i++) {
-          if (filteredData[i]["Primary Domain"] != x.primaryDomain) {
+          if (filteredData[i]["Primary Domain"] !== x.primaryDomain) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -580,12 +570,12 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log(
             "###",
             filteredData[i]["Secondary Domain"] !== x.secondaryDomain
           );
-          if (filteredData[i]["Secondary Domain"] != x.secondaryDomain) {
+          if (filteredData[i]["Secondary Domain"] !== x.secondaryDomain) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -597,9 +587,9 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log("###", filteredData[i]["Country"] !== x.country);
-          if (filteredData[i]["Country"] != x.country) {
+          if (filteredData[i]["Country"] !== x.country) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -611,9 +601,9 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log("###", filteredData[i]["State"] !== x.state);
-          if (filteredData[i]["State"] != x.state) {
+          if (filteredData[i]["State"] !== x.state) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -625,9 +615,9 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log("###", filteredData[i]["City"] !== x.city);
-          if (filteredData[i]["City"] != x.city) {
+          if (filteredData[i]["City"] !== x.city) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -639,9 +629,9 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log("###", filteredData[i]["Climate Zone"] !== x.climateZone);
-          if (filteredData[i]["Climate Zone"] != x.climateZone) {
+          if (filteredData[i]["Climate Zone"] !== x.climateZone) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -653,12 +643,12 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log(
             "###",
             filteredData[i]["Scope of Activities"] !== x.scope
           );
-          if (filteredData[i]["Scope of Activities"] != x.scope) {
+          if (filteredData[i]["Scope of Activities"] !== x.scope) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -670,12 +660,12 @@ class Browse extends Component {
       console.log(x);
       console.log(this.props.enterprise);
       if (this.state.solutions) {
-        for (var i = 0; i < filteredData.length; i++) {
+        for (let i = 0; i < filteredData.length; i++) {
           console.log(
             "###",
             filteredData[i]["Primary Domain"] !== x.primaryDomain
           );
-          if (filteredData[i]["Organizational Entity Type"] != x.OrgEntType) {
+          if (filteredData[i]["Organizational Entity Type"] !== x.OrgEntType) {
             filteredData.splice(i, 1);
             i = i - 1;
           }
@@ -685,8 +675,8 @@ class Browse extends Component {
     if (x.solutionType) {
       if (multipleFilters) {
         if (this.state.solutions) {
-          for (var i = 0; i < filteredData.length; i++) {
-            if (filteredData[i]["Solution Type"] != x.solutionType) {
+          for (let i = 0; i < filteredData.length; i++) {
+            if (filteredData[i]["Solution Type"] !== x.solutionType) {
               filteredData.splice(i, 1);
               i = i - 1;
             }
@@ -694,7 +684,7 @@ class Browse extends Component {
         }
       } else {
         if (this.state.solutions) {
-          for (var i = 0; i < filteredData.length; i++) {
+          for (let i = 0; i < filteredData.length; i++) {
             if (filteredData[i]["Solution Type"] !== x.solutionType) {
               filteredData.splice(i, 1);
               i = i - 1;
@@ -707,7 +697,7 @@ class Browse extends Component {
     if (x.location) {
       if (multipleFilters) {
         if (this.state.solutions) {
-          for (var i = 0; i < filteredData.length; i++) {
+          for (let i = 0; i < filteredData.length; i++) {
             if (filteredData[i]["Location"] !== x.location) {
               filteredData.splice(i, 1);
               i = i - 1;
@@ -718,7 +708,7 @@ class Browse extends Component {
         }
       } else {
         if (this.state.solutions) {
-          for (var i = 0; i < filteredData.length; i++) {
+          for (let i = 0; i < filteredData.length; i++) {
             if (filteredData[i]["Location"] !== x.location) {
               filteredData.splice(i, 1);
               i = i - 1;
@@ -729,7 +719,7 @@ class Browse extends Component {
     }
     if (x.keyWordSearch) {
       if (this.state.solutions) {
-        for (var i = 0; i < this.state.solutions.length; i++) {
+        for (let i = 0; i < this.state.solutions.length; i++) {
           console.log(x.keyWordSearch);
           console.log(this.state.solutions[i]["Keyword Descriptors"]);
           console.log(
@@ -752,7 +742,7 @@ class Browse extends Component {
       }
     }
 
-    for (var i = 0; i < filteredData.length; i++) {
+    for (let i = 0; i < filteredData.length; i++) {
       for (var k = i + 1; k < filteredData.length; k++) {
         if (
           filteredData[i].Name.toLowerCase() >
@@ -771,7 +761,6 @@ class Browse extends Component {
     const items = [];
     if (filteredData) {
       for (var i = 0; i < filteredData.length; i++) {
-        const lab = filteredData[i]["Name"];
 
         let s = filteredData[i]._id;
         console.log("111111111111111111111111111111");

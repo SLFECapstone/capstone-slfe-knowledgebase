@@ -1,22 +1,6 @@
 import React from "react";
 import SectionTitle from "../SectionTitle";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-import StarRatingComponent from "react-star-rating-component";
-
-const horizontalLayout = styled.body`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-`;
-
-const verticalLayout = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 500px;
-`;
 
 export default function ResultItem({ label, img, text, location }) {
   return (
@@ -32,6 +16,7 @@ export default function ResultItem({ label, img, text, location }) {
       {img && (
         <div>
           <img
+	    alt = ""
             style={{
               marginRight: "50px",
               maxWidth: "250px",
