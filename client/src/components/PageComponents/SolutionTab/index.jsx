@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import State from './state.jsx';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class Tabs extends Component {
   static propTypes = {
@@ -124,13 +125,13 @@ class Tabs extends Component {
         </div>
         <br/> <br/> <br/>
         <div>
-          { this.state.showPreviousBtn ? <button type="button" onClick={onClickPrevBtn}>Previous</button> : null }
-          { this.state.showNextBtn ? <button type="button" onClick={onClickNextBtn}>Next</button> : null }
+          { this.state.showPreviousBtn ? <button type="button" class="btn btn-light" onClick={onClickPrevBtn}>Previous</button> : null }
+          { this.state.showNextBtn ? <button type="button" class="btn btn-light" onClick={onClickNextBtn}>Next</button> : null }
 
         </div> <br />
         <div>
-        { this.props.showSaveBtn ? <button type="button">Cancel</button> : null }
-          { this.props.showSaveBtn ? <button type="button" onClick={this.props.onSave}>Save</button> : null }
+        { this.props.showSaveBtn ? <button type="button" class="btn btn-light">Cancel</button> : null }
+          { this.props.showSaveBtn ? <button type="button" class="btn btn-light" onClick={this.props.onSave}>Save</button> : null }
         </div>
         
       </div>

@@ -795,6 +795,9 @@ class Browse extends Component {
         <div style={{ marginBottom: "50px", width: "100%" }}>
           <Navbar />
         </div>
+        <div style={{ marginLeft: "85%" }}>
+          <a href="/solution/add">Add a Solution</a>
+        </div>
         <InnerPage>
           <div style={{ minWidth: "200px" }}>{checkboxes}</div>
           {this.state.filteredSolutions && (

@@ -81,6 +81,12 @@ class SolutionSummary extends Component {
                 <td class="item">Description</td>
                 <td>{singleSolution["General Description"]}</td>
               </tr>
+              <tr>
+                <td class="item"></td>
+                <td>
+                  <button>Download as PDF</button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
