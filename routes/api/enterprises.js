@@ -91,7 +91,7 @@ router.get('/update_aws_link', (req, res) => {
         }
       }
 
-      // result[i].save();
+      result[i].save();
     }
     res.json(final);
   })
