@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import QueryString from "query-string";
 import styled from "styled-components";
 import ResultItem from "../PageComponents/ResultItem";
@@ -7,8 +8,6 @@ import PropTypes from "prop-types";
 import { getEnterprises, getField } from "../../actions/enterpriseActions";
 import { connect } from "react-redux";
 import CheckBox from "rc-checkbox";
-import Navbar from "../PageComponents/Navbar";
-import Footer from "../PageComponents/Footer";
 
 const Page = styled.div`
   display: flex;
@@ -28,6 +27,10 @@ const InnerPage = styled.div`
 `;
 
 class Browse extends Component {
+  static propTypes = {
+    isAuthenticated: PropTypes.bool
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -789,14 +792,22 @@ class Browse extends Component {
 
   render() {
     const checkboxes = this.getCheckBoxs();
+    const { isAuthenticated, user } = this.props.auth;
+
+    let canAddSolution = false;
+
+    if (isAuthenticated) {
+      if (user.role !== 'Member') {
+        canAddSolution = true;
+      }
+    }
 
     return (
       <Page>
-        <div style={{ marginBottom: "50px", width: "100%" }}>
-          <Navbar />
-        </div>
         <div style={{ marginLeft: "85%" }}>
-          <a href="/solution/add">Add a Solution</a>
+          { canAddSolution ? (
+            <Link to={'/solution/add'}>Add a Solution</Link>
+          ) : null }
         </div>
         <InnerPage>
           <div style={{ minWidth: "200px" }}>{checkboxes}</div>
@@ -804,9 +815,6 @@ class Browse extends Component {
             <Paginate todos={this.state.filteredSolutions} />
           )}
         </InnerPage>
-        <div style={{ marginTop: "50px", width: "100%" }}>
-          <Footer />
-        </div>
       </Page>
     );
   }
@@ -820,7 +828,8 @@ Browse.propTypes = {
   data: PropTypes.object
 };
 const mapStateToProps = state => ({
-  enterprise: state.enterprise
+  enterprise: state.enterprise,
+  auth: state.auth
 });
 export default connect(
   mapStateToProps,

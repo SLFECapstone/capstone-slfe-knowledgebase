@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from '../PageComponents/Navbar';
-import Footer from '../PageComponents/Footer';
-import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { getCurrentProfile} from '../../actions/profileActions';
 
@@ -12,9 +9,7 @@ class dashboard extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <h1>Dashboard</h1>
-        <Footer />
       </div>
     )
   }

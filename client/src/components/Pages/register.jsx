@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../PageComponents/Navbar'
 import RegisterForm from '../PageComponents/RegisterForm'
-import Footer from '../PageComponents/Footer'
 
 class register extends Component {
   componentDidMount() {
@@ -11,9 +9,7 @@ class register extends Component {
   render() {
     return (
       <div >
-      	<Navbar />
       	<RegisterForm />
-      	<Footer />
       </div>
     )
   }

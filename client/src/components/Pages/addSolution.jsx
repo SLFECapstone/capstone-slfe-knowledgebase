@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../PageComponents/Navbar'
 import Tabs from "../PageComponents/SolutionTab";
-import Footer from '../PageComponents/Footer'
 import { connect } from "react-redux";
 import { getDomainEntries } from "../../actions/domainActions";
 import { addSolutionFunc } from "../../actions/enterpriseActions";
@@ -187,7 +185,6 @@ class addSolution extends Component {
 
     return (
       <div >
-        <Navbar />
         <h1>Add New Solution</h1> 
         <br />
         <Tabs showCancelBtn={true} showSaveBtn={true} onSave={this.handleFormSubmit}>
@@ -341,7 +338,6 @@ class addSolution extends Component {
             {referenceUploadList}
           </div>            
         </Tabs>
-      <Footer />
       </div>
     )
   }

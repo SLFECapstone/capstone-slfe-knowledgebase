@@ -11,14 +11,16 @@ class RegisterForm extends Component
 		this.onChangeEmailAddress = this.onChangeEmailAddress.bind(this);
 		this.onChangeUserName = this.onChangeUserName.bind(this);
 		this.onChangePassword = this.onChangePassword.bind(this);
+		this.onChangeRole = this.onChangeRole.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 
 		this.state = {
 			first_name: '',
 			last_name: '',
 			email_address: '',
-			user_name: '',
+			username: '',
 			password: '',
+			role: ''
 		}
 	}
 
@@ -42,7 +44,7 @@ class RegisterForm extends Component
 
 	onChangeUserName(e) {
 		this.setState({
-			user_name: e.target.value
+			username: e.target.value
 		});
 	}
 
@@ -52,16 +54,18 @@ class RegisterForm extends Component
 		});
 	}
 
+	onChangeRole(e) {
+		this.setState({
+			role: e.target.value
+		})
+	}
+
 	onSubmit(e) {
 		e.preventDefault();
 		const apiCall = this.props.addUserFunc(this.state);
 		apiCall.then(data => {
 			console.log(data.payload);
 		});
-		/*
-		apiCall.then(data => {
-			console.log(data.payload);
-		});*/
 	}
 
 	render() {
@@ -109,10 +113,25 @@ class RegisterForm extends Component
 								<input
 									type="text"
 									className="form-control"
-									name="user_name"
+									name="username"
 									placeholder="Username"
 									required="required"
 									onChange={this.onChangeUserName}
+								/>
+							</div>
+						</div>
+						<div className="form-group">
+							<div className="input-group">
+								<span className="input-group-addon">
+									<i className="fa fa-user"/>
+								</span>
+								<input
+									type="text"
+									className="form-control"
+									name="role"
+									placeholder="Role"
+									required="required"
+									onChange={this.onChangeRole}
 								/>
 							</div>
 						</div>

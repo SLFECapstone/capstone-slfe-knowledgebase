@@ -1,36 +1,65 @@
 import axios from 'axios';
-import {GET_USER_UPDATE_PASSWORD, ADD_USER, VERIFY_USER, GET_USER_SESSION, GET_USER_REGISTER, RESPONSE_LOADING} from './types';
+import {ADD_USER, LOAD_USER, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, RESPONSE_LOADING} from './types';
 
-/* n is not defined ... removing for now
-export const getUserSession = (username, password) => dispatch => {  //add integration for query here
+
+export const loginFunc = (user) => dispatch => {
   dispatch(setResponseLoading());
-  return axios
-  .get(`/api/users/account/${username}/${n}`)
-  .then(res =>
-    dispatch({
-      type: GET_DOMAIN_ENTRIES,
-      payload: res.data
+  return axios.post('api/users/login', { username: user.username, password: user.password })
+    .then(res => 
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err.response.data
+      })
     })
-  )
-};
-*/
-
-export const loginUserFunc = (user) => dispatch => {
-  console.log("inside loginUserFunc()");
-  dispatch(setResponseLoading());
-  return axios.post('/api/users/loginRequest', user).then(res => dispatch({
-    type: VERIFY_USER,
-    payload: res.data
-  }))
-};
+}
 
 export const addUserFunc = (user) => dispatch => {
   dispatch(setResponseLoading());
-  return axios.post('/api/users/newUserRequest', user).then(res => dispatch({
+  return axios.post('/api/users/register', user).then(res => dispatch({
     type: ADD_USER,
     payload: res.data
   }))
 };
+
+export const loadUser = (user) => dispatch => {
+  dispatch(setResponseLoading());
+  dispatch({
+    type: LOAD_USER
+  })
+};
+
+export const logoutFunc = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+};
+
+// Setup config/headers and token
+export const tokenConfig = getState => {
+  // Get token from localstorage
+  const token = getState().auth.token;
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  };
+
+  // If token, add to headers
+  if (token) {
+    config.headers['x-auth-token'] = token;
+  }
+
+  return config;
+};
+
 
 export const setResponseLoading = () => {
   return{

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Navbar from '../PageComponents/Navbar'
-import Footer from '../PageComponents/Footer'
 
 class privacy extends Component {
   componentDidMount() {
@@ -10,9 +8,7 @@ class privacy extends Component {
   render() {
     return (
       <div >
-        <Navbar />
         Privacy Policy
-      <Footer />
       </div>
     )
   }

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../PageComponents/Navbar";
-import Footer from "../PageComponents/Footer";
 import Summary from "../PageComponents/SolutionSummary";
 import Tabs from "../PageComponents/SolutionTab";
 import Radar from "react-d3-radar";
@@ -67,7 +65,6 @@ class solution extends Component {
 
         return (
             <div class="solution-page">
-                <Navbar />
                 <div className="content">
                     <Summary img={images} id={this.props.match.params.id} />
                     <Tabs>
@@ -226,7 +223,6 @@ class solution extends Component {
           </div>
         </Slide>
       </div>*/}
-        <Footer />
       </div>
     );
   }

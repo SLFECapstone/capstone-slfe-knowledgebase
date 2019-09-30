@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import SectionTitle from "../PageComponents/SectionTitle";
 import styled from "styled-components";
-import Footer from "../PageComponents/Footer";
 import CategoryType from "../PageComponents/CategoryType";
 import PropTypes from "prop-types";
 import Search from "material-ui-search-bar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { connect } from "react-redux";
-import Navbar from "../PageComponents/Navbar";
 import { getEnterprises, getField } from "../../actions/enterpriseActions";
 import { getDomains } from "../../actions/enterpriseActions";
 import { getDomainEntries } from "../../actions/domainActions";
@@ -172,10 +170,6 @@ class explore extends Component {
           integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
           crossOrigin="anonymous"
         />
-
-        <div style={{ width: "100%" }}>
-          <Navbar />
-        </div>
         <PageSection>
           <div style={{ width: "75%", marginTop: "20px" }}>
             <div>
@@ -247,9 +241,6 @@ class explore extends Component {
             <Map width={"100%"} height={"500px"} />
           </div>
         </span>
-        <div style={{ width: "100%" }}>
-          <Footer />
-        </div>
       </Page>
     );
   }

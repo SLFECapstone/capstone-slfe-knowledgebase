@@ -39,6 +39,7 @@ aws.config.region = process.env.S3_BUCKET_REGION
 aws.config.accessKeyId = process.env.AWS_ACCESS_KEY_ID
 aws.config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
+app.locals.JWT_SECRET = process.env.JWT_SECRET
 app.locals.S3_BUCKET_NAME = process.env.S3_BUCKET_NAME
 app.locals.S3_BUCKET_REGION = process.env.S3_BUCKET_REGION
 
