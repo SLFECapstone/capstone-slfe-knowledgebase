@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { GET_ENTERPRISES, GET_DOMAINS, GET_SOLUTIONS, ADD_SOLUTION, GET_BYID, GET_FIELD,  RESPONSE_LOADING, GET_CUSTOM} from './types';
+import {
+  GET_ENTERPRISES, GET_DOMAINS, GET_SOLUTIONS, GET_BYID, GET_FIELD, GET_CUSTOM,
+  ADD_SOLUTION,
+  UPDATE_SOLUTION,
+  RESPONSE_LOADING} from './types';
 
 export const getEnterprises = () => dispatch => {  //add integration for query here
   dispatch(setResponseLoading());
@@ -35,6 +39,14 @@ export const getSolutions = () => dispatch => {  //add integration for query her
       payload: res.data
     })
   )
+};
+
+export const editSolutionFunc = (solution) => dispatch => {
+  dispatch(setResponseLoading());
+  return axios.post('/api/enterprises/u/' + solution._id, solution).then(res => dispatch({
+    type: UPDATE_SOLUTION,
+    payload: res.data
+  }))
 };
 
 export const addSolutionFunc = (solution) => dispatch => {
@@ -73,9 +85,9 @@ export const getCustom = (field, value) => dispatch => {
   dispatch(setResponseLoading());
   return axios
     .get(`/api/enterprises/q/${field}/${value}`)
-    .then( res => 
+    .then( res =>
       dispatch({
-      type: GET_CUSTOM, 
+      type: GET_CUSTOM,
       payload: res.data
       })
     )

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 import { addUserFunc } from "../../../actions/userActions";
+
 
 class RegisterForm extends Component
 {
@@ -20,7 +22,7 @@ class RegisterForm extends Component
 			email_address: '',
 			username: '',
 			password: '',
-			role: ''
+			role: 'Member'
 		}
 	}
 
@@ -64,7 +66,7 @@ class RegisterForm extends Component
 		e.preventDefault();
 		const apiCall = this.props.addUserFunc(this.state);
 		apiCall.then(data => {
-			console.log(data.payload);
+			this.props.history.push('/login');
 		});
 	}
 
@@ -125,14 +127,11 @@ class RegisterForm extends Component
 								<span className="input-group-addon">
 									<i className="fa fa-user"/>
 								</span>
-								<input
-									type="text"
-									className="form-control"
-									name="role"
-									placeholder="Role"
-									required="required"
-									onChange={this.onChangeRole}
-								/>
+								<select onChange={this.onChangeRole} required="required" class="form-control">
+									<option value="Member">Member</option>
+									<option value="Contributor">Contributor</option>
+									<option value="Reviewer">Reviewer</option>
+								</select>
 							</div>
 						</div>
 						<div className="form-group">
@@ -205,4 +204,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, {addUserFunc})(RegisterForm)
+export default withRouter(connect(mapStateToProps, {addUserFunc})(RegisterForm))

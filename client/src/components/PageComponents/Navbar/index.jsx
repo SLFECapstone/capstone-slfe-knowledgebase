@@ -68,6 +68,10 @@ class Navbar extends Component {
                     <i className="fa fa-gear" /> Settings
                   </a>
                   <a className="dropdown-item">
+                    <i className="fa fa-clock-o" />
+                    <a href="/events"> Events </a>
+                  </a>
+                  <a className="dropdown-item">
                     <a onClick={this.onLogout}>
                       <i className="fa fa-sign-out" />Logout
                     </a>

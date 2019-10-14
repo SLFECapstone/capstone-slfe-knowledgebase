@@ -27,6 +27,8 @@ class Paginate extends Component {
     this.setState({
       currentPage: Number(event.target.id)
     });
+    
+    window.scroll(0,0);
   }
 
   render() {

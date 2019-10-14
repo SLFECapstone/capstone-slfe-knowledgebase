@@ -27,13 +27,13 @@ class Map extends Component {
 			reload: false
     };
   }
-	
+
 
   componentWillMount() {
   	this.props.getEnterprises();
   }
   componentDidMount() {
-  	
+
 		let config = {};
 		config.params = {
 		  center: [33.4144139,	-111.90945],
@@ -68,15 +68,15 @@ class Map extends Component {
 	    // a TileLayer is used as the "basemap"
 	    const tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
 			this.setState({ map: map, tileLayer: tileLayer });
-			
+
 			this.setState({ icon: L.icon({ iconUrl: markerImg }) });
-			
+
 			/* removed in SP19_SPRINT1 bug_fix on not directly editing state. (Safe? to delete)
 			this.state.icon = L.icon({
 			    iconUrl: markerImg
 			});
 			*/
-			
+
   	}
   }
   render() {
@@ -94,12 +94,14 @@ class Map extends Component {
 				marker.bindPopup('<p><a href="/solution/' + id + '">' + name + '</a></p>').openPopup();
 				markers.addLayer(marker);
 			}
-			this.state.map.addLayer(markers)
-			this.state.map.fitBounds([
-		    [5.499550, -167.276413], //Southwest
-		    [53.162102, -52.233040]  //Northeast
-			]);
-			this.state.map.setZoom(3);
+			if(this.state.map !== null) { // fixing bug #100 in taiga where map does not load and crashes page.
+				this.state.map.addLayer(markers)
+				this.state.map.fitBounds([
+			    [5.499550, -167.276413], //Southwest
+			    [53.162102, -52.233040]  //Northeast
+				]);
+				this.state.map.setZoom(3);
+			}
 		}
     return (
 	    <div id="map" style={{ marginTop: '20px', height: this.state.height, width: this.state.width }}>

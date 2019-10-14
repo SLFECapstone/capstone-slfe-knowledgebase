@@ -1,4 +1,5 @@
-import {GET_ENTERPRISES, GET_DOMAINS, GET_SOLUTIONS, GET_BYID, GET_FIELD, GET_CUSTOM, RESPONSE_LOADING} from '../actions/types';
+import {GET_ENTERPRISES, GET_DOMAINS, GET_SOLUTIONS, GET_BYID, GET_FIELD, GET_CUSTOM,
+        UPDATE_SOLUTION, RESPONSE_LOADING} from '../actions/types';
 
 const initialState = {
   enterprises: [],
@@ -30,6 +31,12 @@ export default function( state = initialState, action){
         solutions: action.payload,
         loading: false
     };
+    case UPDATE_SOLUTION:
+      return {
+        ...state,
+        singleSolution: action.payload,
+        loading: false
+      };
     case GET_BYID:
       return{
         ...state,

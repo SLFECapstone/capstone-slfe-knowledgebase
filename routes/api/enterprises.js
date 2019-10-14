@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/domains', (req, res)=>{
   Enterprise
-    .distinct("Primary Domain", 
+    .distinct("Primary Domain",
               {"Primary Domain": {$nin: ["", null]}
               }
             )
@@ -78,8 +78,8 @@ router.get('/update_aws_link', (req, res) => {
         result[i].mainImage = result[i].mainImage.replace("https://s3-us-west-1.amazonaws.com/slfe-image-storage", "https://s3-us-west-1.amazonaws.com/slfe-knowledgebase")
 
         final.push(result[i])
-      } 
-      
+      }
+
       if (result[i].otherImages.length > 0) {
         for (let j = 0; j < result[i].otherImages.length; j++) {
           if (result[i].otherImages[j].img.includes("aws")) {
@@ -96,6 +96,18 @@ router.get('/update_aws_link', (req, res) => {
     res.json(final);
   })
 });
+
+router.post('/u/:id', (req, res) => {
+  Enterprise.findById(req.params.id, function(err, enterprise){
+    if(err){
+      res.send("error occured");
+      next();
+    }
+    enterprise.isFeatured = req.body.isFeatured;
+    console.log(req.body.isFeatured);
+    enterprise.save().then(enterprise => res.json(enterprise));;
+  })
+})
 
 router.post('/', (req, res) => {
   const newEnt = new Enterprise({

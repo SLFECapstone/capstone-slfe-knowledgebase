@@ -10,6 +10,7 @@ const enterprises = require('./routes/api/enterprises');
 const domains = require('./routes/api/domains');
 const users = require('./routes/api/users');
 const files = require('./routes/api/files');
+const system_events = require('./routes/api/system_events')
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/enterprises', enterprises);
 app.use('/api/domains', domains);
 app.use('/api/users', users);
 app.use('/api/files', files);
+app.use('/api/system_events', system_events);
 
 // AWS config
 aws.config.region = process.env.S3_BUCKET_REGION
