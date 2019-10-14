@@ -34,6 +34,8 @@ class Map extends Component {
   }
   componentDidMount() {
 
+		document.title = "SLFE - Map";
+
 		let config = {};
 		config.params = {
 		  center: [33.4144139,	-111.90945],

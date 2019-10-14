@@ -3,7 +3,7 @@ import RegisterForm from '../PageComponents/RegisterForm'
 
 class register extends Component {
   componentDidMount() {
-    document.title = "Register";
+    document.title = "SLFE - Registration";
   }
 
   render() {

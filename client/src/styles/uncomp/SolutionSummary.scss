@@ -24,6 +24,11 @@
     height: auto;
 }
 
+.each-slide div {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
 .solution-summary .summary {
     align-self: stretch;
     justify-self: center;

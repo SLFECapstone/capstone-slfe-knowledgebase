@@ -4,7 +4,7 @@ import Footer from '../PageComponents/Footer'
 
 class user_profile_page extends Component {
   componentDidMount() {
-    document.title = "User Profile";
+    document.title = "SLFE - User Profile";
   }
 
   render() {

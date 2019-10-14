@@ -4,7 +4,7 @@ import Footer from '../PageComponents/Footer'
 
 class events_page extends Component {
   componentDidMount() {
-    document.title = "Events";
+    document.title = "SLFE - Events";
   }
 
   render() {

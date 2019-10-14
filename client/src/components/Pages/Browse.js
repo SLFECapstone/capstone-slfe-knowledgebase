@@ -117,6 +117,11 @@ class Browse extends Component {
       });
     });
   }
+
+  componentDidMount() {
+    document.title = "SLFE - Browse Solutions";
+  }
+
   handleCheckBox = (event, checked) => {
     console.log("name: ", event);
     const x = QueryString.parse(this.props.location.search);

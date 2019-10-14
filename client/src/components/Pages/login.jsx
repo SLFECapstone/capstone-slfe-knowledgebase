@@ -3,7 +3,7 @@ import LoginForm from '../PageComponents/LoginForm'
 
 class login extends Component {
   componentDidMount() {
-    document.title = "Login";
+    document.title = "SLFE - Login";
   }
 
   render() {

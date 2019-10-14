@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class about extends Component {
   componentDidMount() {
-    document.title = "About";
+    document.title = "SLFE - About";
   }
 
   render() {

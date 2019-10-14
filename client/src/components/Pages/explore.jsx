@@ -38,6 +38,10 @@ class explore extends Component {
     this.onSubmitClick = this.onSubmitClick.bind(this);
   }
 
+  componentDidMount() {
+    document.title = "SLFE Knowledge Base";
+  }
+
   onSubmitClick(al) {
     this.props.history.push(`/browse?keyWordSearch=${al}`);
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class terms_of_service extends Component {
   componentDidMount() {
-    document.title = "Terms of Service";
+    document.title = "SLFE - Terms of Service";
   }
 
   render() {

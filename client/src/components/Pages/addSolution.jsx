@@ -74,7 +74,7 @@ class addSolution extends Component {
   handleInputChange(event) {
     const target = event.target;
     const name = target.name;
-    
+
     let temp = this.state.solution;
     temp[name] = target.value;
 
@@ -117,7 +117,7 @@ class addSolution extends Component {
         this.setState({
           solution: temp
         });
-        
+
       } else {
         alert("Image upload fail!");
       }
@@ -135,7 +135,7 @@ class addSolution extends Component {
         this.setState({
           solution: temp
         });
-        
+
       } else {
         alert("Reference upload fail!");
       }
@@ -156,7 +156,7 @@ class addSolution extends Component {
   }
 
   componentDidMount() {
-    document.title = "Add Solution";
+    document.title = "SLFE - Add Solution";
   }
 
   getCategoryItems() {
@@ -185,7 +185,7 @@ class addSolution extends Component {
 
     return (
       <div >
-        <h1>Add New Solution</h1> 
+        <h1>Add New Solution</h1>
         <br />
         <Tabs showCancelBtn={true} showSaveBtn={true} onSave={this.handleFormSubmit}>
           <div label="General">
@@ -313,7 +313,7 @@ class addSolution extends Component {
                 <textarea class="form-control" name="BusinessModelDescription" rows="5" cols="50" value={this.state.solution.BusinessModelDescription} onChange={this.handleInputChange}></textarea>
               </div>
               <div class="form-group">
-              
+
               </div>
             </div>
           </div>
@@ -336,7 +336,7 @@ class addSolution extends Component {
             </form>
             <br /><br />
             {referenceUploadList}
-          </div>            
+          </div>
         </Tabs>
       </div>
     )
