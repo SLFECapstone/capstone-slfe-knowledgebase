@@ -63,33 +63,16 @@ class solution extends Component {
         document.title = "Solution: " + singleSolution.Name;
          const images = this.generateSlideShow();
 
+         let references = [];
+         if (typeof singleSolution !== "undefined" && typeof singleSolution.References !== "undefined") {
+           references = singleSolution.References.split('\n');
+         }
+
         return (
             <div class="solution-page">
                 <div className="content">
                     <Summary img={images} id={this.props.match.params.id} />
                     <Tabs>
-                        <div label="Overview">
-                            <h4>Product Description</h4>
-                            <p>
-                                { singleSolution["General Description"] }
-                            </p>
-                            <h4>Economic Networks</h4>
-                            <p>
-                                { singleSolution["Economic Networks"] }
-                            </p>
-                            <h4>Associations</h4>
-                            <p>
-                                { singleSolution.Associations }
-                            </p>
-                            <h4>References</h4>
-                            <p>
-                                { singleSolution.References }
-                            </p>
-                            <h4>Last Updated</h4>
-                            <p>
-                                { singleSolution["Last Updated"] }
-                            </p>
-                        </div>
                         <div label="Details">
                             <h4>Customer Description</h4>
                             <p>
@@ -200,8 +183,9 @@ class solution extends Component {
                             </div>
                         </div>
                     </Tabs>
+                    <h2>References</h2>
+                    {references.map(r => <p> {r} </p>)}
         </div>
-
         {/*
                   typeof singleSolution["otherImages"] !== 'undefined' &&
                   <div style={{ marginLeft: '25%',width: '500px'}}>

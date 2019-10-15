@@ -483,7 +483,7 @@ class Browse extends Component {
               fontSize: "12px",
               display: "grid",
               overflow: "scroll",
-              height: "500px"
+              height: "150px"
             }}
           >
             <h4 style={{ marginLeft: "10px" }}> Secondary Domains </h4>
