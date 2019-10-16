@@ -728,21 +728,19 @@ class Browse extends Component {
     if (x.keyWordSearch) {
       if (this.state.solutions) {
         for (let i = 0; i < this.state.solutions.length; i++) {
-          console.log(x.keyWordSearch);
-          console.log(this.state.solutions[i]["Keyword Descriptors"]);
-          console.log(
-            this.state.solutions[i]["Keyword Descriptors"].indexOf(
-              x.keyWordSearch
-            )
-          );
-          if (
-            !this.state.solutions[i]["Keyword Descriptors"]
-              .toLowerCase()
-              .match(x.keyWordSearch.toLowerCase()) &&
-            !this.state.solutions[i]["Name"]
-              .toLowerCase()
-              .match(x.keyWordSearch.toLowerCase())
-          ) {
+          if (typeof this.state.solutions[i]["Keyword Descriptors"] !== 'undefined') {
+            if (
+              !this.state.solutions[i]["Keyword Descriptors"]
+                .toLowerCase()
+                .match(x.keyWordSearch.toLowerCase()) &&
+              !this.state.solutions[i]["Name"]
+                .toLowerCase()
+                .match(x.keyWordSearch.toLowerCase())
+            ) {
+              filteredData.splice(i, 1);
+              i = i - 1;
+            }
+          } else {
             filteredData.splice(i, 1);
             i = i - 1;
           }
