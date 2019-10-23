@@ -44,7 +44,11 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
   let new_user = new User(req.body);
-	new_user.save().then(user => res.json(user));
+  new_user.save()
+    .then(user => res.json(user))
+    .catch(function () {
+      console.log("There was an error registering the user")
+    });
 });
 
 module.exports = router;

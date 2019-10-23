@@ -725,25 +725,27 @@ class Browse extends Component {
         }
       }
     }
-    if (x.keyWordSearch) {
+
+    if (x.searchTerm) {
       if (this.state.solutions) {
         for (let i = 0; i < this.state.solutions.length; i++) {
-          if (typeof this.state.solutions[i]["Keyword Descriptors"] !== 'undefined') {
-            if (
-              !this.state.solutions[i]["Keyword Descriptors"]
-                .toLowerCase()
-                .match(x.keyWordSearch.toLowerCase()) &&
-              !this.state.solutions[i]["Name"]
-                .toLowerCase()
-                .match(x.keyWordSearch.toLowerCase())
-            ) {
-              filteredData.splice(i, 1);
-              i = i - 1;
-            }
-          } else {
-            filteredData.splice(i, 1);
-            i = i - 1;
-          }
+          let singleSolution = this.state.solutions[i]
+
+          if (
+            singleSolution["Name"].toLowerCase().match(x.searchTerm.toLowerCase()) || 
+            singleSolution["General Description"].toLowerCase().match(x.searchTerm.toLowerCase()) ||
+            (
+              typeof singleSolution["Keyword Descriptors"] !== 'undefined' &&
+              singleSolution["Keyword Descriptors"].toLowerCase().match(x.searchTerm.toLowerCase())
+            ) ||
+            singleSolution["Location"].toLowerCase().match(x.searchTerm.toLowerCase()) ||
+            singleSolution["Country"].toLowerCase().match(x.searchTerm.toLowerCase()) ||
+            singleSolution["State"].toLowerCase().match(x.searchTerm.toLowerCase()) ||
+            singleSolution["City"].toLowerCase().match(x.searchTerm.toLowerCase())
+          ) { continue }
+
+          filteredData.splice(i, 1);
+          i = i -1;
         }
       }
     }

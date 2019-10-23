@@ -46,7 +46,7 @@ class explore extends Component {
     super(props);
     this.state = {
       textChange: null,
-      keyWordSearchText: "",
+      searchTermText: "",
       dataArray: [],
       solutionTypes: null
     };
@@ -59,7 +59,7 @@ class explore extends Component {
   }
 
   onSubmitClick(al) {
-    this.props.history.push(`/browse?keyWordSearch=${al}`);
+    this.props.history.push(`/browse?searchTerm=${al}`);
   }
 
   getCategoryItems = () => {
@@ -182,16 +182,16 @@ class explore extends Component {
         <PageSection>
           <div style={{ width: "75%", marginTop: "20px" }}>
             <div>
-              <SectionTitle label="Keyword Search" />
+              <SectionTitle label="Search" />
               <MuiThemeProvider>
                 <Search
-                  value={this.state.keyWordSearchText}
+                  value={this.state.searchTermText}
                   onChange={value => {
-                    this.setState({ keyWordSearchText: value });
+                    this.setState({ searchTermText: value });
                   }}
                   onRequestSearch={() => {
                     this.props.history.push(
-                      `/browse?keyWordSearch=${this.state.keyWordSearchText}`
+                      `/browse?searchTerm=${this.state.searchTermText}`
                     );
                   }}
                 />
