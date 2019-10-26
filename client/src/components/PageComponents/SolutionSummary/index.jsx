@@ -66,7 +66,7 @@ class SolutionSummary extends Component {
           <div>
             <Slide
               {...properties}
-              style={{ maxWidth: "700px", maxHeight: "500px" }}
+              style={{ maxWidth: "500px", maxHeight: "300px" }}
             >
               {this.props.img}
             </Slide>
@@ -74,6 +74,10 @@ class SolutionSummary extends Component {
         )}
         <div className="summary">
           <table>
+            <colgroup>
+              <col style={{width:"30%"}} />
+              <col style={{width:"70%"}} />
+            </colgroup>
             <tbody>
               <tr>
                 <th colspan="2" class="title">
@@ -81,51 +85,109 @@ class SolutionSummary extends Component {
                 </th>
               </tr>
               <tr>
-                <td class="item">Type</td>
+                <td class="item">Name</td>
+                <td>{singleSolution["Name"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Responsible Organization</td>
+                <td>{singleSolution["Responsible Organization"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Short Description</td>
+                <td>{singleSolution["Short Description"]}</td>
+              </tr>
+              <tr>
+                <td class="item">General Description</td>
+                <td>{singleSolution["General Description"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Solution Type</td>
                 <td>{singleSolution["Solution Type"]}</td>
               </tr>
               <tr>
-                <td class="item">Domain</td>
+                <td class="item">Primary Domain</td>
                 <td>{singleSolution["Primary Domain"]}</td>
               </tr>
               <tr>
-                <td class="item">Entity</td>
+                <td class="item">Secondary Domain</td>
+                <td>{singleSolution["Secondary Domain"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Organizational Entity Type</td>
                 <td>{singleSolution["Organizational Entity Type"]}</td>
               </tr>
               <tr>
-                <td class="item">Area</td>
-                <td>{singleSolution["Operational Area"]}</td>
+                <td class="item">Keywords</td>
+                <td>{singleSolution["Keyword Descriptors"]}</td>
               </tr>
               <tr>
-                <td class="item">Climate</td>
-                <td>{singleSolution["Climate Zone"]}</td>
+                <td class="item">Location</td>
+                <td>{singleSolution["Location"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Country</td>
+                <td>{singleSolution["Country"]}</td>
+              </tr>
+              <tr>
+                <td class="item">State</td>
+                <td>{singleSolution["State"]}</td>
               </tr>
               <tr>
                 <td class="item">City</td>
+                <td>{singleSolution["City"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Latitude</td>
+                <td>{singleSolution["Lattitude"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Longitude</td>
+                <td>{singleSolution["Longitude"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Scope of Activities</td>
+                <td>{singleSolution["Scope of Activities"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Operational Area</td>
+                <td>{singleSolution["Operational Area"]}</td>
+              </tr>
+              <tr>
+                <td class="item">Climate Zone</td>
+                <td>{singleSolution["Climate Zone"]}</td>
+              </tr>
+              <tr>
+                <td class="item">City Type</td>
                 <td>{singleSolution["City Type"]}</td>
               </tr>
               <tr>
-                <td class="item">Founded</td>
+                <td class="item">Date Founded</td>
                 <td>{singleSolution["Date Founded"]}</td>
               </tr>
               <tr>
-                <td class="item">Economic</td>
+                <td class="item">Economic Network</td>
                 <td>{singleSolution["Economic Networks"]}</td>
               </tr>
               <tr>
-                <td class="item">Other</td>
-                <td>{singleSolution["Other Outputs Description"]}</td>
+                <td class="item">Associations</td>
+                <td>{singleSolution["Associations"]}</td>
               </tr>
               <tr>
-                <td class="item">Description</td>
-                <td>{singleSolution["General Description"]}</td>
+                <td class="item">Annual Revenue</td>
+                <td>{singleSolution["Annual Revenu"]}</td>
               </tr>
+              <tr>
+                <td class="item">Number of Workers</td>
+                <td>{singleSolution["Number of Employees"]}</td>
+              </tr>
+              {/* This is not used for anything right now, and can be confusing.
               <tr>
                 <td class="item"></td>
                 <td>
                   <button>Download as PDF</button>
                 </td>
               </tr>
+              */}
               <tr>
                 <td colspan="2">
                 <label>

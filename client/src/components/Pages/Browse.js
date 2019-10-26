@@ -795,8 +795,24 @@ class Browse extends Component {
     return items;
   };
 
+  /* Calculates text for Solution Result Page Header*/
+  getResultPageHeaderDomainText = () => {
+    const x = QueryString.parse(this.props.location.search);
+    let returnText = "Showing results for ";
+    if (x.primaryDomain) 
+    {
+      returnText = returnText + "solutions in the " + String(x.primaryDomain) + " domain";
+    }
+    else
+    {
+      returnText = returnText + "ALL domains";
+    }
+    return returnText;
+  }
+
   render() {
     const checkboxes = this.getCheckBoxs();
+    const headerText = this.getResultPageHeaderDomainText();
     const { isAuthenticated, user } = this.props.auth;
 
     let canAddSolution = false;
@@ -813,6 +829,9 @@ class Browse extends Component {
           { canAddSolution ? (
             <Link to={'/solution/add'}>Add a Solution</Link>
           ) : null }
+        </div>
+        <div style={{ marginLeft: "25%" }}>
+          {headerText}
         </div>
         <InnerPage>
           <div style={{ minWidth: "200px" }}>{checkboxes}</div>

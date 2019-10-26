@@ -12,7 +12,7 @@ import solution from './components/Pages/solution.jsx';
 import addSolution from './components/Pages/addSolution';
 import dashboard from './components/Pages/dashboard';
 import user_profile_page from './components/Pages/user_profile_page';
-import events_page from './components/Pages/events';
+import notifications_page from './components/Pages/notifications';
 
 
 import store from './store';
@@ -38,7 +38,7 @@ class App extends Component {
           <Route path='/solution/:id' component={solution} />
           <Route exact path="/dashboard" component={dashboard} />
           <Route path='/profile' component={user_profile_page} />
-          <Route path='/events' compenent={events_page} />
+          <Route path='/notifications' compenent={notifications_page} />
         </Switch>
         <Footer />
       </div>
