@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../PageComponents/Navbar'
-import Footer from '../PageComponents/Footer'
+import Profile from '../PageComponents/Profile'
 
 class profile extends Component {
   componentDidMount() {
@@ -10,6 +9,7 @@ class profile extends Component {
   render() {
     return (
       <div >
+        <Profile />
       </div>
     )
   }
