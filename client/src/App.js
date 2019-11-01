@@ -37,7 +37,7 @@ class App extends Component {
           <Route path='/solution/add' component={addSolution} />
           <Route path='/solution/:id' component={solution} />
           <Route exact path="/dashboard" component={dashboard} />
-          <Route path='/profile' component={profile} />
+          <Route path='/profile/:username' component={profile} />
           <Route path='/notifications' compenent={notifications_page} />
         </Switch>
         <Footer />

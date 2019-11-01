@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getProfile } from "../../../actions/profileActions";
 import PropTypes from "prop-types";
 
 class Profile extends Component {
@@ -13,11 +14,12 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-
+    console.log("inside profile pagecomponent " + this.props.profileData);
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const profileData = this.props.profileData;
 
     let adminView;
     let header;
@@ -35,7 +37,7 @@ class Profile extends Component {
     return (
 
       <div>
-        <h1>Profile Page for {header}</h1>
+        <h1>Profile Page for unknown</h1>
         {adminView}
       </div>
 
@@ -44,9 +46,11 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profileData
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  {getProfile}
 )(Profile);

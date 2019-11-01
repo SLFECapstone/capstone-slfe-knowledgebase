@@ -5,6 +5,16 @@ const router = express.Router();
 //User Model
 const User = require('../../models/user');
 
+router.get('/profile/:username/', (req, res)=>{
+    User.findById(req.params.username, function(err, user){
+    if(err){
+      res.send("error occured");
+      next();
+    }
+    res.json(user);
+  })
+});
+
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
@@ -22,7 +32,7 @@ router.post('/login', (req, res) => {
             { expiresIn: 3600 },
             (err, token) => {
               if (err) throw err;
-              
+
               // return the token and user details
               res.json({
                 token,

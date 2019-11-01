@@ -15,6 +15,7 @@ export const DELETE_FILE = 'DELETE_FILE'
 export const ADD_USER = 'ADD_USER';
 export const VERIFY_USER = 'VERIFY_USER';
 export const LOAD_USER = 'LOAD_USER';
+export const GET_BY_USERNAME = 'GET_BY_USERNAME';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
