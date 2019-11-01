@@ -1,7 +1,7 @@
 import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE} from '../actions/types';
 
 const initialState = {
-    profile: [],
+    profile: {},
     profiles: null,     //this will be an array of profiles
     loading: false
 };

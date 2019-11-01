@@ -6,13 +6,13 @@ const router = express.Router();
 const User = require('../../models/user');
 
 router.get('/profile/:username/', (req, res)=>{
-    User.findById(req.params.username, function(err, user){
-    if(err){
+  User.findOne({ username: req.params.username }, function(err, user) {
+    if (err) {
       res.send("error occured");
       next();
     }
     res.json(user);
-  })
+  });
 });
 
 router.post('/login', (req, res) => {
