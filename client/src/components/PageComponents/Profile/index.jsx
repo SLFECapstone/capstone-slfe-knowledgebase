@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 
 class Profile extends Component {
 
-  static propTypes = {
-    auth: PropTypes.object.isRequired
-  };
+  // static propTypes = {
+  //   auth: PropTypes.object.isRequired,
+  // };
 
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ class Profile extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const profileData = this.props.profileData;
+    const { profile } = this.props.profileData;
 
     let adminView;
     let header;
@@ -33,11 +33,11 @@ class Profile extends Component {
     else {
       header = "Unknown";
     }
-    console.log(user);
+    // console.log(user);
     return (
 
       <div>
-        <h1>Profile Page for unknown</h1>
+        <h1>Profile Page for {profile.username}</h1>
         {adminView}
       </div>
 
@@ -47,7 +47,7 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profileData
+  profileData: state.profileData
 });
 
 export default connect(
