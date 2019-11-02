@@ -1,7 +1,6 @@
 const  express = require('express');
 const aws = require('aws-sdk');
 const  mongoose = require('mongoose');
-const  bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
 const port = process.env.PORT || 5000;
@@ -18,11 +17,8 @@ const app = express();
 dotenv.config();
 
 //Bodyparser Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Fix deprecation warnings:
 mongoose.set('useNewUrlParser', true);
