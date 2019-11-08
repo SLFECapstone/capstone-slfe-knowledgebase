@@ -1,7 +1,7 @@
 import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE} from '../actions/types';
 
 const initialState = {
-    profile: null,
+    profile: {},
     profiles: null,     //this will be an array of profiles
     loading: false
 };
@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
                 ...state,
                 profile: null
             };
-        
+
         default:
             return state;
     }

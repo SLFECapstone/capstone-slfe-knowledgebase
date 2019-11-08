@@ -14,10 +14,10 @@ class Navbar extends Component {
 		super(props);
 		this.onLogout = this.onLogout.bind(this);
   }
-  
+
   onLogout(e) {
 		e.preventDefault();
-		
+
     this.props.logoutFunc();
     this.props.history.push('/');
 	}
@@ -37,7 +37,7 @@ class Navbar extends Component {
               />
             </Link>
           </div>
-  
+
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -63,7 +63,7 @@ class Navbar extends Component {
                 <div className="dropdown-menu">
                   <a className="dropdown-item">
                     <i className="fa fa-user-circle" />
-                    <a href="/profile"> Profile </a>
+                    <a href={ `/profile/${user.username}` }> Profile </a>
                   </a>
                   <a className="dropdown-item">
                     <i className="fa fa-gear" /> Settings
@@ -85,7 +85,7 @@ class Navbar extends Component {
                 </div>
               </li>
             </ul>
-            ) : ( 
+            ) : (
               <div className='navbar-nav'>
                 <a className="nav-link font-weight-bold" href="/login">
                   Login
