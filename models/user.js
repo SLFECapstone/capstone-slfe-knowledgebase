@@ -10,7 +10,11 @@ const userSchema = new Schema({
   role: { type: String },
 	first_name: { type: String, required: true },
 	last_name: { type: String, required: true },
-	email_address: { type: String, required: true }
+	email_address: { type: String, required: true },
+  position: { type: String, required: true },
+  biography: { type: String, required: true },
+  organization: { type: String, required: true },
+  contributions: []
 },
 {
   versionKey: false
