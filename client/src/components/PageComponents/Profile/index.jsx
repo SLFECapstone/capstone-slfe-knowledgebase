@@ -33,14 +33,13 @@ class Profile extends Component {
     else {
       header = "Unknown";
     }
+
     // console.log(user);
     return (
-
       <div>
-        <h1>Profile Page for {profile.username}</h1>
+        <h1>{ profile.first_name + " " + profile.last_name }</h1>
         {adminView}
       </div>
-
     );
   }
 }
