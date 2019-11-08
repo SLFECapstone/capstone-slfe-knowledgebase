@@ -39,8 +39,8 @@ class App extends Component {
           <Route path='/solution/:id' component={solution} />
           <Route exact path="/dashboard" component={dashboard} />
           <Route path='/profile' component={user_profile_page} />
-          <Route path='/notifications' compenent={notifications_page} />
-          <Route path='/tempadminpage' compenent={tempAdminPage} />
+          <Route path='/notifications' component={notifications_page} />
+          <Route path='/tempadminpage' component={tempAdminPage} />
         </Switch>
         <Footer />
       </div>
