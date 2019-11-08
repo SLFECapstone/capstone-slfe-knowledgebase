@@ -37,7 +37,9 @@ class Profile extends Component {
     // console.log(user);
     return (
       <div>
-        <h1>{ profile.first_name + " " + profile.last_name }</h1>
+        <h1>{ profile.first_name ? profile.first_name + " " + profile.last_name : null }</h1>
+        <h3>Organization: { profile.organization ? profile.organization : null }</h3>
+        <h3>Position: { profile.position ? profile.position : null } </h3>
         {adminView}
       </div>
     );
