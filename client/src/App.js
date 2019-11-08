@@ -13,6 +13,7 @@ import addSolution from './components/Pages/addSolution';
 import dashboard from './components/Pages/dashboard';
 import profile from './components/Pages/profile';
 import notifications_page from './components/Pages/notifications';
+import tempAdminPage from './components/Pages/tempAdminPage';
 
 
 import store from './store';
@@ -37,8 +38,14 @@ class App extends Component {
           <Route path='/solution/add' component={addSolution} />
           <Route path='/solution/:id' component={solution} />
           <Route exact path="/dashboard" component={dashboard} />
+<<<<<<< HEAD
           <Route path='/profile/:username' component={profile} />
           <Route path='/notifications' compenent={notifications_page} />
+=======
+          <Route path='/profile' component={user_profile_page} />
+          <Route path='/notifications' component={notifications_page} />
+          <Route path='/tempadminpage' component={tempAdminPage} />
+>>>>>>> 3adbf802e0a1a19047c1958a8ee43194f1d51fd3
         </Switch>
         <Footer />
       </div>
