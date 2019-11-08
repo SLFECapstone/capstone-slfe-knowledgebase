@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutFunc } from "../../../actions/userActions";
@@ -18,7 +18,8 @@ class Navbar extends Component {
   onLogout(e) {
 		e.preventDefault();
 
-		this.props.logoutFunc();
+    this.props.logoutFunc();
+    this.props.history.push('/');
 	}
 
   render() {
@@ -72,17 +73,18 @@ class Navbar extends Component {
                     <a href="/notifications"> Notifications </a>
                   </a>
                   <a className="dropdown-item">
-                    <a onClick={this.onLogout}>
-                      <i className="fa fa-sign-out" />Logout
-                    </a>
+                    <i className="fa fa-sign-out" />
+                    <a href='#' onClick={this.onLogout}> Logout </a>
                   </a>
                 </div>
               </li>
             </ul>
             ) : (
-              <a className="nav-link font-weight-bold" href="/login">
-                Login
-              </a>
+              <div className='navbar-nav'>
+                <a className="nav-link font-weight-bold" href="/login">
+                  Login
+                </a>
+              </div>
             ) }
           </div>
         </div>
@@ -95,7 +97,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { logoutFunc }
-)(Navbar);
+)(Navbar));
