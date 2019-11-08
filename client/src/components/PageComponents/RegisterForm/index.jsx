@@ -22,6 +22,10 @@ class RegisterForm extends Component
 			email_address: '',
 			username: '',
 			password: '',
+			position: 'None',
+			biography: 'None',
+			organization: 'None',
+			contributions: [],
 			role: 'Member'
 		}
 	}
