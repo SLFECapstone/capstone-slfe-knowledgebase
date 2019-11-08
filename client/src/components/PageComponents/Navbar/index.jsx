@@ -72,7 +72,13 @@ class Navbar extends Component {
                     <i className="fa fa-bell" />
                     <a href="/notifications"> Notifications </a>
                   </a>
-                  <a className="dropdown-item">
+                  {(user.role == 'Administrator') ? (
+                    <a className="dropdown-item">
+                      <i className="fa fa-address-book" />
+                      <a href="/tempadminpage"> Admin Page </a>
+                    </a>
+                  ): null }
+                  <a className="dropdown-iUser Profiletem">
                     <i className="fa fa-sign-out" />
                     <a href='#' onClick={this.onLogout}> Logout </a>
                   </a>
