@@ -41,7 +41,7 @@ class Profile extends Component {
           <h3>Organization: { profile.organization ? profile.organization : "" }</h3>,
           <h3>Position: { profile.position ? profile.position : "" } </h3>,
           <h3>Email: { profile.email_address ? profile.email_address : "" } </h3>
-        ] : (<div><div>) }
+        ] : <div></div> }
       </div>
     );
   }
