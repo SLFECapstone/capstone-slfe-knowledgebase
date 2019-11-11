@@ -37,8 +37,20 @@ const PageSection = styled.span`
 `;
 
 const ModifiedCard = styled(Card)`
-  height: 250px;
+  height: 260px;
   margin: 25px;
+`;
+
+const FeatCardTitle = styled(CardTitle)`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const FeatCardText = styled(CardText)`
+  max-height: 76px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 class explore extends Component {
@@ -111,13 +123,13 @@ class explore extends Component {
           popularItems.push(
             <ModifiedCard>
               <CardBody>
-                <CardTitle>
+                <FeatCardTitle>
                   <h3>
                     <p class="text-success">
                       {this.state.popularSolutions[i].Name}
                     </p>
                   </h3>
-                </CardTitle>
+                </FeatCardTitle>
                 <CardSubtitle>
                   <h5>
                     <p class="text-muted">
@@ -125,9 +137,9 @@ class explore extends Component {
                     </p>
                   </h5>
                 </CardSubtitle>
-                <CardText>
+                <FeatCardText>
                   {this.state.popularSolutions[i]["General Description"]}
-                </CardText>
+                </FeatCardText>
                 <a
                   style={{ color: "blue" }}
                   href={`/solution/${this.state.popularSolutions[i]._id}`}
@@ -180,7 +192,7 @@ class explore extends Component {
     return (
       <Page>
         <PageSection>
-          <div style={{ width: "75%", marginTop: "20px" }}>
+          <div style={{ width: "75%", marginTop: "20px"}}>
             <div>
               <SectionTitle label="Search" />
               <MuiThemeProvider>
@@ -200,19 +212,11 @@ class explore extends Component {
           </div>
         </PageSection>
         <br />
-        <Container>
-          <Row>
-            <Col sm="12" md={{ size: 6, offset: 3 }}>
-              <section className="food-domains-title">
-                <div className="title">
-                  <h1>
-                    <p class="text-success">Food Economy Domain</p>
-                  </h1>
-                </div>
-              </section>
-            </Col>
-          </Row>
-        </Container>
+        <div style={{ paddingLeft: "27px" }}>
+          <h2 class="text-success" style={{ textAlign: "left" }}>
+          Food Economy Domain
+        </h2>
+        </div>
         <br />
         <div
           style={{
@@ -226,20 +230,12 @@ class explore extends Component {
           {categoryList}
         </div>
         <br />
-        <Container>
-          <Row>
-            <Col sm="12" md={{ size: 6, offset: 3 }}>
-              <section className="feat-soln-title">
-                <div className="title">
-                  <h1>
-                    <p class="text-success">Featured Solutions</p>
-                  </h1>
-                </div>
-              </section>
-            </Col>
-          </Row>
-        </Container>
-        <br />
+        <div style={{ paddingLeft: "27px" }}>
+          <h2 class="text-success" style={{ textAlign: "left" }}>
+            Featured Solutions
+          </h2>
+        </div>
+
         <div
           style={{
             width: "100%",
