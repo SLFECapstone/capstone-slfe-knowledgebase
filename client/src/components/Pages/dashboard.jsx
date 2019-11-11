@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { getCurrentProfile} from '../../actions/profileActions';
+//import { getCurrentProfile} from '../../actions/profileActions';
 
 class dashboard extends Component {
     componentDidMount() {
-        this.props.getCurrentProfile();
+        //this.props.getCurrentProfile();
     }
   render() {
     return (
@@ -15,4 +15,5 @@ class dashboard extends Component {
   }
 }
 
-export default connect(null, { getCurrentProfile }) (dashboard);
+export default connect()(dashboard);
+//export default connect(null, { getCurrentProfile }) (dashboard);

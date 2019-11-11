@@ -7,6 +7,6 @@ import authReducer from './authReducer';
 export default combineReducers({
   enterpriseData: enterpriseReducer,
   domainData: domainReducer,
-  profile: profileReducer,
+  profileData: profileReducer,
   auth: authReducer
 });

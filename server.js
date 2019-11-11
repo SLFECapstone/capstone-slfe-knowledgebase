@@ -23,11 +23,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+
+// Fix deprecation warnings:
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 //Connect to Mongo
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log('connected to db...'))
   .catch(err => console.log(err));
+
+
 
 // Use Routes
 app.use('/api/enterprises', enterprises);

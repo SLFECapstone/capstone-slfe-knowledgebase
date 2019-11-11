@@ -51,6 +51,14 @@ export const editSolutionFunc = (solution) => dispatch => {
 
 export const addSolutionFunc = (solution) => dispatch => {
   dispatch(setResponseLoading());
+  let tempReferences = "";
+
+  for (let i = 0; i < solution.References.length; i++) {
+    tempReferences += solution.References[i];
+    tempReferences += ";";
+  }
+
+  solution.References = tempReferences;
   return axios.post('/api/enterprises', solution).then(res => dispatch({
     type: ADD_SOLUTION,
     payload: res.data
