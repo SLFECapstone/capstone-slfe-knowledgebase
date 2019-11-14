@@ -11,37 +11,64 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {editMode: false};
+    this.handleEditClick = this.handleEditClick.bind(this);
+  }
+
+  handleEditClick(){
+    this.setState({
+      editMode: !this.state.editMode
+    });
   }
 
   componentDidMount() {
+    
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
     const { profile } = this.props.profileData;
 
-    let adminView;
-    let header;
+    let adminIsViewing = false;
+    let userName = "Anonymous User";
+    let isOwnProfile = false;
 
     if (isAuthenticated) {
-      header = user.username;
-      if (user.role === "Administrator") {
-        adminView = <p>Admin is viewing</p>
+      if (profile) {
+        userName = user.username;
+        adminIsViewing = (user.role === "Administrator");
+        isOwnProfile = (profile.username === user.username);
       }
-    }
-    else {
-      header = "Unknown";
     }
 
     // console.log(user);
     return (
       <div>
-        { profile ? [
-          <h1>{ profile.first_name ? profile.first_name + " " + profile.last_name : "" }</h1>,
-          <h3>Organization: { profile.organization ? profile.organization : "" }</h3>,
-          <h3>Position: { profile.position ? profile.position : "" } </h3>,
-          <h3>Email: { profile.email_address ? profile.email_address : "" } </h3>
-        ] : <div></div> }
+        { profile ? (
+          <div>
+            {this.state.editMode && isOwnProfile ? (
+            <div>
+              In Edit Mode on your own profile.
+            </div>) : (
+            <div>
+              { isOwnProfile ? (
+              <div>
+                <h2>Welcome to your Profile { userName }</h2>
+                <div><button onClick={this.handleEditClick}>Edit Profile</button></div> 
+                <div>&nbsp;</div>
+              </div>
+              ) : (<h2>{ userName }, welcome to { profile.username }'s Profile</h2>)}
+              <body>
+                <div>Name: { profile.first_name ? profile.first_name + " " + profile.last_name : "" }</div>
+                <div>Organization: { profile.organization ? profile.organization : "" }</div>
+                <div>Position: { profile.position ? profile.position : "" } </div>
+                <div>Email: { profile.email_address ? profile.email_address : "" } </div>
+              </body>
+            </div>)}
+          
+          </div>
+        ) : (<div></div>)
+        }
       </div>
     );
   }
