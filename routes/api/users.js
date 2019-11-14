@@ -15,6 +15,33 @@ router.get('/profile/:username/', (req, res)=>{
   });
 });
 
+router.post('/updateprofile', (req, res) => {
+  let { username, firstname, lastname, organization, position, email } = req.body;
+
+  // Search the database for the given username
+  User.findOne({ username })
+    .then(user => {
+      if (!user) return res.status(400).json({ message: 'Invalid username'});
+      // Update relevant fields
+      user.first_name = firstname;
+      user.last_name = lastname;
+      user.organization = organization;
+      user.position = position;
+      user.email_address = email;
+      // Mark modifications to ensure update is staged
+      user.markModified('first_name');
+      user.markModified('last_name');
+      user.markModified('organization');
+      user.markModified('position');
+      user.markModified('email_address');
+      // Save to database or error
+      user.save(function (err) {
+        if(err){ return res.status(400).json({ message: 'Database update error'}); }
+      });
+      res.json({ message: 'Update successful'});
+    })
+});
+
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
 

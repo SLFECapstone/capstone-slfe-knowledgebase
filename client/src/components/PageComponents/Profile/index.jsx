@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getProfile } from "../../../actions/profileActions";
+import { getProfile, updateProfileFunc } from "../../../actions/profileActions";
 import PropTypes from "prop-types";
 
 class Profile extends Component {
@@ -12,8 +12,6 @@ class Profile extends Component {
   constructor(props) {
     super(props);
 
-    const { profile } = props.profileData;
-    //Having trouble loading profile data in constructor, yet need info to initialize text fields with existing data.
     this.state = {
       editMode: false,
       firstname: 'ProfileTest',
@@ -70,11 +68,16 @@ class Profile extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		
-		const apiCall = this.props.loginFunc({ username: this.state.username, password: this.state.password });
-		apiCall.then(data => {
-			this.props.history.push('/');
-		});
+    const { isAuthenticated, user } = this.props.auth;
+    console.log("submitting profile update form")
+    if (isAuthenticated)
+    {
+      console.log("authenticated profile update form")
+      const apiCall = this.props.updateProfileFunc({ username: user.username, firstname: this.state.firstname, lastname: this.state.lastname, organization: this.state.organization, position: this.state.position, email: this.state.email });
+      apiCall.then(data => {
+        this.props.history.push('/');
+      });
+  }
   }
 
   componentDidMount() {
@@ -233,5 +236,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {getProfile}
+  {getProfile, updateProfileFunc},
 )(Profile);
