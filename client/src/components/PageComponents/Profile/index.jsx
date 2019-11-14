@@ -16,8 +16,8 @@ class Profile extends Component {
     //Having trouble loading profile data in constructor, yet need info to initialize text fields with existing data.
     this.state = {
       editMode: false,
-      firstname: 'Profile',
-      lastname: profile.last_name,
+      firstname: 'ProfileTest',
+      lastname: '',
       organization: '',
       position: '',
       email: ''
@@ -75,6 +75,17 @@ class Profile extends Component {
 		apiCall.then(data => {
 			this.props.history.push('/');
 		});
+  }
+
+  componentDidMount() {
+    const { profile } = this.props.profileData;
+    this.setState({
+      firstname: profile.first_name,
+      lastname: profile.last_name,
+      organization: profile.organization,
+      position: profile.position,
+      email: profile.email_address
+    })
   }
 
   render() {
