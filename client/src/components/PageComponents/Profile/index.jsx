@@ -5,14 +5,14 @@ import PropTypes from "prop-types";
 
 class Profile extends Component {
 
-  // static propTypes = {
-  //   auth: PropTypes.object.isRequired,
-  // };
+  PropTypes = {
+    username: PropTypes.string.isRequired,
+    getProfile: PropTypes.func.isRequired
+  };
 
   constructor(props) {
     super(props);
 
-    const { profile } = props.profileData;
     //Having trouble loading profile data in constructor, yet need info to initialize text fields with existing data.
     this.state = {
       editMode: false,
@@ -78,14 +78,18 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const { profile } = this.props.profileData;
-    this.setState({
-      firstname: profile.first_name,
-      lastname: profile.last_name,
-      organization: profile.organization,
-      position: profile.position,
-      email: profile.email_address
-    })
+    const apiCall = this.props.getProfile(this.props.username);
+    const self = this;
+    apiCall.then(function() {
+      const { profile } = self.props.profileData;
+      self.setState({
+        firstname: profile.first_name,
+        lastname: profile.last_name,
+        organization: profile.organization,
+        position: profile.position,
+        email: profile.email_address
+      });
+    });
   }
 
   render() {

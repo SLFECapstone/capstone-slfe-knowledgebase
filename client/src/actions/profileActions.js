@@ -5,7 +5,7 @@ import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from "./types";
 export const getProfile = (username) => dispatch => {
   dispatch(setProfileLoading());
   console.log(`/api/users/profile/${username}`);
-  axios.get(`/api/users/profile/${username}`).then(res =>
+  return axios.get(`/api/users/profile/${username}`).then(res =>
     dispatch({
       type: GET_PROFILE,
       payload: res.data
