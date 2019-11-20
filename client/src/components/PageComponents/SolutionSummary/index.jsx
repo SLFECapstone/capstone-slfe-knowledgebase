@@ -138,11 +138,21 @@ class SolutionSummary extends Component {
               </tr>
               <tr>
                 <td class="item">Latitude</td>
-                <td>{singleSolution["Lattitude"]}</td>
+                <td>{singleSolution["Lattitude"]}
+                </td>
               </tr>
               <tr>
                 <td class="item">Longitude</td>
-                <td>{singleSolution["Longitude"]}</td>
+                <td>{ singleSolution["Longitude"] }
+                </td>
+              </tr>
+              <tr>
+                <td class="item">GPS</td>
+                <td>{ Math.abs(singleSolution["Lattitude"]).toFixed(4) }&deg; {
+                      singleSolution["Lattitude"] < 0 ? "S" : "N" },&nbsp;
+                      { Math.abs(singleSolution["Longitude"]).toFixed(4) }&deg; {
+                            singleSolution["Longitude"] < 0 ? "W" : "E" }
+                </td>
               </tr>
               <tr>
                 <td class="item">Scope of Activities</td>
