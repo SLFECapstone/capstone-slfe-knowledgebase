@@ -40,6 +40,20 @@ class SolutionSummary extends Component {
 
   }
 
+  // Convert latitude, longitude to cardinal directions with 4 decimal precision
+  // (because this is the resolution of a parcel of land) as a displayable
+  // value: lat (N,S), long (E, W)
+  toGPS = (latitude, longitude) => {
+
+    if (Number.isNaN(latitude) || Number.isNaN(longitude))
+      return "";
+
+    let lat = Math.abs(latitude).toFixed(4) + "° " + ((latitude < 0) ? "S" : "N");
+    let lon = Math.abs(longitude).toFixed(4) + "° " + ((longitude < 0) ? "W" : "E");
+    let output = lat + ", " + lon;
+    return output;
+  }
+
   render() {
     const properties = {
       infinite: true,
@@ -148,10 +162,7 @@ class SolutionSummary extends Component {
               </tr>
               <tr>
                 <td class="item">GPS</td>
-                <td>{ Math.abs(singleSolution["Lattitude"]).toFixed(4) }&deg; {
-                      singleSolution["Lattitude"] < 0 ? "S" : "N" },&nbsp;
-                      { Math.abs(singleSolution["Longitude"]).toFixed(4) }&deg; {
-                            singleSolution["Longitude"] < 0 ? "W" : "E" }
+                <td>{ this.toGPS(singleSolution["Lattitude"], singleSolution["Longitude"]) }
                 </td>
               </tr>
               <tr>
