@@ -375,7 +375,7 @@ class editSolution extends Component {
               </div>
             </div>
           </div>
-          <div label="Images">
+          {/* <div label="Images">
             <form onSubmit={this.handleImageUpload}>
               <div class="col-8">
                 <div class="form-group">
@@ -394,7 +394,7 @@ class editSolution extends Component {
             </form>
             <br /><br />
             {referenceUploadList}
-          </div>
+          </div> */}
         </Tabs>
       </div>
     )
