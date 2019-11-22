@@ -124,13 +124,13 @@ class Tabs extends Component {
           })}
         </div>
         <br/> <br/> <br/>
-        <div>
+        {/* <div>
           { this.state.showPreviousBtn ? <button type="button" class="btn btn-light" onClick={onClickPrevBtn}>Previous</button> : null }
           { this.state.showNextBtn ? <button type="button" class="btn btn-light" onClick={onClickNextBtn}>Next</button> : null }
 
-        </div> <br />
+        </div> <br /> */}
         <div>
-        { this.props.showSaveBtn ? <button type="button" class="btn btn-light">Cancel</button> : null }
+        { this.props.showCancelBtn ? <button type="button" class="btn btn-light">Cancel</button> : null }
           { this.props.showSaveBtn ? <button type="button" class="btn btn-light" onClick={this.props.onSave}>Save</button> : null }
         </div>
         
