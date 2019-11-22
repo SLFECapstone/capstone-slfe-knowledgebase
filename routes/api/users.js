@@ -21,7 +21,11 @@ router.post('/updateprofile', (req, res) => {
   // Search the database for the given username
   User.findOne({ username })
     .then(user => {
-      if (!user) return res.status(400).json({ message: 'Invalid username'});
+      if (!user) {
+        console.log('not saved')
+        res.status(400).json({ message: 'Invalid username'});
+        return;
+      }
       // Update relevant fields
       user.first_name = firstname;
       user.last_name = lastname;
@@ -35,10 +39,18 @@ router.post('/updateprofile', (req, res) => {
       user.markModified('position');
       user.markModified('email_address');
       // Save to database or error
-      user.save(function (err) {
-        if(err){ return res.status(400).json({ message: 'Database update error'}); }
+      user.save(function (err, user) {
+        if(err) { 
+          console.log('why')
+          console.log(err)
+          res.status(400).json({ message: 'Database update error'});
+          return;
+        }
+
+        console.log('SAVED')
+        res.json({ message: 'Update successful'});
       });
-      res.json({ message: 'Update successful'});
+
     })
 });
 

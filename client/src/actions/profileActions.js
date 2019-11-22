@@ -36,7 +36,7 @@ export const clearCurrentProfile = () => {
 
 export const updateProfileFunc = (userProfile) => dispatch => {
   dispatch(setProfileUpdating());
-  return axios.post('api/users/updateprofile', { username: userProfile.username, firstname: userProfile.firstname, lastname: userProfile.lastname, organization: userProfile.organization, position: userProfile.position, email: userProfile.email })
+  return axios.post('/api/users/updateprofile', { username: userProfile.username, firstname: userProfile.firstname, lastname: userProfile.lastname, organization: userProfile.organization, position: userProfile.position, email: userProfile.email })
     .then(res => 
       dispatch({
         type: UPDATE_PROFILE_SUCCESS,

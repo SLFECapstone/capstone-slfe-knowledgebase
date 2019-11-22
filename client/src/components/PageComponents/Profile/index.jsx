@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom'
 import { getProfile, updateProfileFunc } from "../../../actions/profileActions";
 import PropTypes from "prop-types";
 
@@ -240,7 +241,7 @@ const mapStateToProps = state => ({
   profileData: state.profileData
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   {getProfile, updateProfileFunc},
-)(Profile);
+)(Profile));
