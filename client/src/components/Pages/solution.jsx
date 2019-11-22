@@ -4,6 +4,7 @@ import Tabs from "../PageComponents/SolutionTab";
 import Radar from "react-d3-radar";
 import { Accordion, AccordionItem } from "react-light-accordion";
 import "react-light-accordion/demo/css/index.css";
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getByID } from "../../actions/enterpriseActions";
 import PropTypes from "prop-types";
@@ -59,6 +60,15 @@ class solution extends Component {
     render() {
 
         const { singleSolution } = this.props.enterpriseData
+        const { isAuthenticated, user } = this.props.auth;
+
+        let canEditSolution = false;
+    
+        if (isAuthenticated) {
+          if (user.role === 'Administrator') {
+            canEditSolution = true;
+          }
+        }
 
         document.title = "Solution: " + singleSolution.Name;
          const images = this.generateSlideShow();
@@ -70,6 +80,11 @@ class solution extends Component {
 
         return (
             <div class="solution-page">
+                <div style={{ marginLeft: "85%" }}>
+                  { canEditSolution ? (
+                    <Link to={'/solution/edit/' + singleSolution._id}>Edit Solution</Link>
+                  ) : null }
+               </div>
                 <div className="content">
                     <Summary img={images} id={this.props.match.params.id} />
                     <Tabs>
@@ -217,7 +232,8 @@ solution.PropTypes = {
 };
 
 const mapStateToProps = state => ({
-  enterpriseData: state.enterpriseData
+  enterpriseData: state.enterpriseData,
+  auth: state.auth
 });
 
 export default connect(
