@@ -343,10 +343,6 @@ class editSolution extends Component {
                 <textarea class="form-control" name="SupportingServicesDescription" rows="5" cols="50" value={this.state.solution.SupportingServicesDescription} onChange={this.handleInputChange}></textarea>
               </div>
               <div class="form-group">
-                <label>Supporting Services Description</label> <br />
-                <textarea class="form-control" name="SupportingServicesDescription" rows="5" cols="50" value={this.state.solution.SupportingServicesDescription} onChange={this.handleInputChange}></textarea>
-              </div>
-              <div class="form-group">
                 <label>Distributing Description</label> <br />
                 <textarea class="form-control" name="DistributingDescription" rows="5" cols="50" value={this.state.solution.DistributingDescription} onChange={this.handleInputChange}></textarea>
               </div>
