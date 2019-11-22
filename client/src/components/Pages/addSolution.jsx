@@ -131,7 +131,7 @@ class addSolution extends Component {
     apiCall.then(data => {
       if (data.payload.success) {
         let temp = this.state.solution;
-        temp["References"].push({ ref: data.payload.url });
+        temp["References"] += '\n' + data.payload.url;
         this.setState({
           solution: temp
         });
@@ -212,13 +212,13 @@ class addSolution extends Component {
               </div>
               <div class="form-group">
                 <label>Primary Domain</label> <br />
-                <select class="form-control" name="PrimaryDomain" onChange={this.handleInputChange}>
+                <select class="form-control" name="PrimaryDomain" value={this.state.solution.PrimaryDomain} onChange={this.handleInputChange}>
                   {categoryList}
                 </select>
               </div>
               <div class="form-group">
               <label>Secondary Domain</label> <br />
-              <select class="form-control" name="SecondaryDomain" onChange={this.handleInputChange}>
+              <select class="form-control" name="SecondaryDomain" value={this.state.solution.SecondaryDomain} onChange={this.handleInputChange}>
                 <option value="">None</option>
                 {categoryList}
               </select>
@@ -238,11 +238,13 @@ class addSolution extends Component {
               </div>
               <div class="form-group">
                 <label>City</label> <br />
-                <input class="form-control" name="City" type="text" value={this.state.City} onChange={this.handleInputChange}></input>
+                <input class="form-control" name="City" type="text" value={this.state.solution.City} onChange={this.handleInputChange}></input>
               </div>
               <div class="form-group">
                 <label>Scope of Activities</label> <br />
                 <select class="form-control" name="ScopeOfActivities" value={this.state.solution.ScopeOfActivities} onChange={this.handleInputChange}>
+                  <option value="Metro Area">Metro Area</option>
+                  <option value="County">County</option>
                   <option value="Regional">Regional</option>
                   <option value="Statewide">Statewide</option>
                   <option value="National">National</option>
