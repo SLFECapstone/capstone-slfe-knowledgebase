@@ -11,9 +11,9 @@ const userSchema = new Schema({
 	first_name: { type: String, required: true },
 	last_name: { type: String, required: true },
 	email_address: { type: String, required: true },
-  position: { type: String, required: true },
-  biography: { type: String, required: true },
-  organization: { type: String, required: true },
+  position: { type: String, required: true, default: 'N/A' },
+  biography: { type: String, required: true, default: 'N/A' },
+  organization: { type: String, required: true, default: 'N/A' },
   contributions: []
 },
 {
