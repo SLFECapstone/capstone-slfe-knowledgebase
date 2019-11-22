@@ -287,7 +287,7 @@ class addSolution extends Component {
                 <textarea class="form-control" name="DistributingDescription" rows="5" cols="50" value={this.state.solution.DistributingDescription} onChange={this.handleInputChange}></textarea>
               </div>
               <div class="form-group">
-                <label>Re-Cycling Description</label> <br />
+                <label>Recycling Description</label> <br />
                 <textarea class="form-control" name="RecyclingDescription" rows="5" cols="50" value={this.state.solution.RecyclingDescription} onChange={this.handleInputChange}></textarea>
               </div>
               <div class="form-group">
