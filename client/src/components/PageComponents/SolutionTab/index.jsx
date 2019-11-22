@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import State from './state.jsx';
+import { withRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 
 class Tabs extends Component {
@@ -45,55 +46,14 @@ class Tabs extends Component {
     });
   }
 
-  onClickPrevBtn = (btn) => {
-    let currIndex = 0;
-
-    for (let iter = 0; iter < this.props.children.length; iter++) {
-      if (this.props.children[iter].props.label === this.state.activeTab) {
-        currIndex = iter;
-      }
-    }
-
-    let prevIndex = currIndex - 1
-
-    if (prevIndex === 0) {
-      this.setState({ showPreviousBtn: false });
-    }
-
-    if (prevIndex < this.props.children.length) {
-      this.setState({ showNextBtn: true });
-    }
-
-    this.setState({ activeTab: this.props.children[prevIndex].props.label })
-  }
-
-  onClickNextBtn = (btn) => {
-    let currIndex = 0;
-
-    for (let iter = 0; iter < this.props.children.length; iter++) {
-      if (this.props.children[iter].props.label === this.state.activeTab) {
-        currIndex = iter;
-      }
-    }
-
-    let nextIndex = currIndex + 1
-
-    if (nextIndex !== 0) {
-      this.setState({ showPreviousBtn: true })
-    }
-
-    if (nextIndex+1 >= this.props.children.length) {
-      this.setState({ showNextBtn: false })
-    }
-
-    this.setState({ activeTab: this.props.children[nextIndex].props.label })
+  onClickCancel = (btn) => {
+    this.props.history.push('/browse');
   }
 
   render() {
     const {
       onClickTabItem,
-      onClickPrevBtn,
-      onClickNextBtn,
+      onClickCancel,
       props: {
         children,
       },
@@ -124,13 +84,8 @@ class Tabs extends Component {
           })}
         </div>
         <br/> <br/> <br/>
-        {/* <div>
-          { this.state.showPreviousBtn ? <button type="button" class="btn btn-light" onClick={onClickPrevBtn}>Previous</button> : null }
-          { this.state.showNextBtn ? <button type="button" class="btn btn-light" onClick={onClickNextBtn}>Next</button> : null }
-
-        </div> <br /> */}
         <div>
-        { this.props.showCancelBtn ? <button type="button" class="btn btn-light">Cancel</button> : null }
+        { this.props.showCancelBtn ? <button type="button" class="btn btn-light" onClick={this.onClickCancel}>Cancel</button> : null }
           { this.props.showSaveBtn ? <button type="button" class="btn btn-light" onClick={this.props.onSave}>Save</button> : null }
         </div>
         
@@ -139,4 +94,4 @@ class Tabs extends Component {
   }
 }
 
-export default Tabs;
+export default withRouter(Tabs);
