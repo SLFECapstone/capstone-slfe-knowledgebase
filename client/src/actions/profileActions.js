@@ -1,5 +1,17 @@
 import axios from "axios";
-import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, UPDATE_PROFILE_FAIL, UPDATE_PROFILE_SUCCESS, PROFILE_UPDATING } from "./types";
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, UPDATE_PROFILE_FAIL, UPDATE_PROFILE_SUCCESS, PROFILE_UPDATING, GET_USERS } from "./types";
+
+export const getUsers = () => dispatch => {  //add integration for query here
+  dispatch(setProfileLoading());
+  return axios
+  .get('/api/users/')
+  .then(res =>
+    dispatch({
+      type: GET_USERS,
+      payload: res.data
+    })
+  )
+};
 
 // Get current profile
 export const getProfile = (username) => dispatch => {

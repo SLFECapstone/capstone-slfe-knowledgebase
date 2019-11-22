@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getUsers } from "../../actions/profileActions";
 import Navbar from '../PageComponents/Navbar'
 import Footer from '../PageComponents/Footer'
 
@@ -15,6 +16,14 @@ class tempAdminPage extends Component {
 
   componentDidMount() {
     document.title = "SLFE - Temp Admin Page";
+
+    const users = this.props.getUsers();
+    users
+      .then(data => {
+        this.setState({
+          users: data.payload
+        });
+      })
   }
 
   render() {
@@ -34,10 +43,15 @@ class tempAdminPage extends Component {
   }
 }
 
+tempAdminPage.propTypes = {
+  getUsers: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  { getUsers }
 )(tempAdminPage);

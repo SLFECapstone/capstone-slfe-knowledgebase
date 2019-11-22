@@ -5,6 +5,15 @@ const router = express.Router();
 //User Model
 const User = require('../../models/user');
 
+// @route  GET api/users
+// @desc   Get all users
+// @access Public
+router.get('/', (req, res) => {
+  User.find({})
+    .sort({username: 1})
+    .then(users => res.json(users))
+});
+
 router.get('/profile/:username/', (req, res)=>{
   User.findOne({ username: req.params.username }, function(err, user) {
     if (err) {
