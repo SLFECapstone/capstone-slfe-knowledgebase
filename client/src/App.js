@@ -10,6 +10,7 @@ import register from './components/Pages/register';
 import mapContainer from './components/Pages/mapContainer.jsx';
 import solution from './components/Pages/solution.jsx';
 import addSolution from './components/Pages/addSolution';
+import editSolution from './components/Pages/editSolution';
 import dashboard from './components/Pages/dashboard';
 import profile from './components/Pages/profile';
 import notifications_page from './components/Pages/notifications';
@@ -36,6 +37,7 @@ class App extends Component {
           <Route exact path='/' component={explore}/>
           <Route path='/map' component={mapContainer} />
           <Route path='/solution/add' component={addSolution} />
+          <Route path='/solution/edit/:id' component={editSolution} />
           <Route path='/solution/:id' component={solution} />
           <Route exact path="/dashboard" component={dashboard} />
           <Route path='/profile/:username' component={profile} />
