@@ -5,6 +5,15 @@ const router = express.Router();
 //User Model
 const User = require('../../models/user');
 
+// @route  GET api/users
+// @desc   Get all users
+// @access Public <IS A SECURITY VULNERABILITY>
+router.get('/', (req, res) => {
+  User.find({})
+    .sort({username: 1})
+    .then(users => res.json(users))
+});
+
 router.get('/profile/:username/', (req, res)=>{
   User.findOne({ username: req.params.username }, function(err, user) {
     if (err) {
@@ -38,6 +47,40 @@ router.post('/updateprofile', (req, res) => {
       user.markModified('organization');
       user.markModified('position');
       user.markModified('email_address');
+      // Save to database or error
+      user.save(function (err, user) {
+        if(err) { 
+          console.log('why')
+          console.log(err)
+          res.status(400).json({ message: 'Database update error'});
+          return;
+        }
+
+        console.log('SAVED')
+        res.json({ message: 'Update successful'});
+      });
+
+    })
+});
+
+// @route  POST api/users/updateprofile/role
+// @desc   Update the profile of username with a new role.
+// @access Public <IS A SECURITY VULNERABILITY>
+router.post('/updateprofile/role', (req, res) => {
+  let { username, role } = req.body;
+
+  // Search the database for the given username
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        console.log('not saved')
+        res.status(400).json({ message: 'Invalid username'});
+        return;
+      }
+      // Update relevant fields
+      user.role = role;
+      // Mark modifications to ensure update is staged
+      user.markModified('role');
       // Save to database or error
       user.save(function (err, user) {
         if(err) { 
