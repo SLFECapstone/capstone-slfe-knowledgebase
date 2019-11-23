@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getUsers } from "../../actions/profileActions";
-import Navbar from '../PageComponents/Navbar'
-import Footer from '../PageComponents/Footer'
+import { getUsers, updateProfileRoleFunc } from "../../actions/profileActions";
 
 class tempAdminPage extends Component {
   static propTypes = {
@@ -45,6 +43,7 @@ class tempAdminPage extends Component {
 
 tempAdminPage.propTypes = {
   getUsers: PropTypes.func.isRequired,
+  updateProfileRoleFunc: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -53,5 +52,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUsers }
+  { getUsers, updateProfileRoleFunc }
 )(tempAdminPage);
