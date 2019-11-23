@@ -52,8 +52,7 @@ export default class CategoryType extends Component {
           )}
           <div
             style={{
-              fontSize: "16px",
-              fontFamily: "Aerial",
+              fontSize: "18px",
               marginTop: "2px",
               marginRight: "5px"
             }}

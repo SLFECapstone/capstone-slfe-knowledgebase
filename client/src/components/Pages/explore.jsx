@@ -10,9 +10,6 @@ import { getEnterprises, getField } from "../../actions/enterpriseActions";
 import { getDomains } from "../../actions/enterpriseActions";
 import { getDomainEntries } from "../../actions/domainActions";
 import {
-  Row,
-  Col,
-  Container,
   Card,
   CardImg,
   CardText,
@@ -78,14 +75,31 @@ class explore extends Component {
     var categoryTypes = [];
     var sorted_cat = [];
     if (this.state.domains) {
+      const { domains } = this.state;
       // The categories must be hard-coded order per Nigel request #190 in Taiga.
-      sorted_cat.push(this.state.domains.find(c => c.name === "Production"));
-      sorted_cat.push(this.state.domains.find(c => c.name === "Processing"));
-      sorted_cat.push(this.state.domains.find(c => c.name === "Distribution"));
-      sorted_cat.push(this.state.domains.find(c => c.name === "Outlets"));
-      sorted_cat.push(this.state.domains.find(c => c.name === "Recycling"));
-      sorted_cat.push(this.state.domains.find(c => c.name === "Integrating"));
+      sorted_cat.push(domains.find(c => c.name === "Production"));
+      sorted_cat.push(domains.find(c => c.name === "Processing"));
+      sorted_cat.push(domains.find(c => c.name === "Distribution"));
+      sorted_cat.push(domains.find(c => c.name === "Outlets"));
+      sorted_cat.push(domains.find(c => c.name === "Recycling"));
+      sorted_cat.push(domains.find(c => c.name === "Integrating"));
       this.state.domains = sorted_cat;
+
+      const addText = [
+        "Production: Growing, harvesting, extracting, collecting, …",
+
+        "Processing: Manufacturing, assembling, baking, cooking, constructing, …",
+
+        "Distribution: Storing, transporting, (re-packaging), aggregating …",
+
+        "Outlets: Delivering, retailing, serving, …",
+
+        "Recycling: Collecting, sorting, repurposing, …",
+
+        "Integrating: Supporting, coordinating, financing, …"
+      ];
+
+      console.log("domainnnnn", this.state.domain);
 
       for (var i = 0; i < this.state.domains.length; i++) {
         categoryTypes.push(
@@ -97,12 +111,22 @@ class explore extends Component {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "center",
-                width: "120px",
-                height: "120px",
-                backgroundColor: "#ffff"
+                color: "white",
+                width: "200px",
+                textAlign: "center",
+                padding: "4px",
+                cursor: "pointer",
+                backgroundColor: "#00796B",
+                position: "relative",
+                borderRadius: "10px",
+                boxShadow:
+                  "0px 10px 0px 0px rgb(2, 77, 68), 0px 0px 20px 0px #bbb",
+                transition: "all 0.3s"
               }}
               image={this.state.domains[i].image}
-              label={this.state.domains[i].name}
+              label={`${addText.filter(d =>
+                d.includes(this.state.domains[i].name)
+              )}`}
               type="primaryDomain"
             />
           </div>
