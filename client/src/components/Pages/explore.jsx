@@ -34,13 +34,12 @@ const PageSection = styled.span`
 `;
 
 const ModifiedCard = styled(Card)`
-  height: 260px;
+  height: 490px;
   margin: 25px;
 `;
 
 const FeatCardTitle = styled(CardTitle)`
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
@@ -48,6 +47,10 @@ const FeatCardText = styled(CardText)`
   max-height: 76px;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const FeatCardImage = styled(CardImg)`
+  margin-bottom: 5px;
 `;
 
 class explore extends Component {
@@ -154,6 +157,12 @@ class explore extends Component {
                     </p>
                   </h3>
                 </FeatCardTitle>
+                <FeatCardImage
+                  top
+                  width="100%"
+                  src={this.state.popularSolutions[i].mainImage}
+                  alt="Main Image for Solution"
+                />
                 <CardSubtitle>
                   <h5>
                     <p class="text-muted">
@@ -181,6 +190,7 @@ class explore extends Component {
 
     return popularItems;
   };
+
   componentWillMount() {
     const domains = this.props.getDomainEntries();
     domains.then(data => {
@@ -265,7 +275,7 @@ class explore extends Component {
             width: "100%",
             alignItems: "center",
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)"
+            gridTemplateColumns: "repeat(4, 1fr)"
           }}
         >
           {popularList}
