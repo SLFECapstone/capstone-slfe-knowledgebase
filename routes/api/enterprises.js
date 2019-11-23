@@ -103,8 +103,51 @@ router.post('/u/:id', (req, res) => {
       res.send("error occured");
       next();
     }
-    enterprise.isFeatured = req.body.isFeatured;
-    console.log(req.body.isFeatured);
+    enterprise.Name = req.body.Name;
+    enterprise["Responsible Organization"] = req.body.ResponsibleOrganization;
+    enterprise["Short Description"] = req.body.ShortDescription;
+    enterprise["General Description"] = req.body.GeneralDescription;
+    enterprise["Solution Type"] = req.body.SolutionType;
+    enterprise["Primary Domain"] = req.body.PrimaryDomain;
+    enterprise["Secondary Domain"] = req.body.SecondayDomain;
+    enterprise["Organizational Entity Type"] = req.body.OrganizationalEntityType;
+    enterprise["Keyword Descriptors"] = req.body.KeywordDescriptors;
+    enterprise.Location = req.body.Location;
+    enterprise.Country = req.body.Country;
+    enterprise.State = req.body.State;
+    enterprise.City = req.body.City;
+    enterprise["Scope of Activities"] = req.body.ScopeOfActivities;
+    enterprise["Operational Area"] = req.body.OperationalArea;
+    enterprise["Climate Zone"] = req.body.ClimateZone;
+    enterprise["City Type"] = req.body.CityType;
+    enterprise["Date Founded"] = req.body.DateFounded;
+    enterprise["Economic Networks"] = req.body.EconomicNetworks;
+    enterprise["Associations"] = req.body.Associations;
+    enterprise["Number of Employees"] = req.body.NumberOfEmployees;
+    enterprise.References = req.body.References;
+    enterprise["Annual Revenue"] = req.body.AnnualRevenue;
+    enterprise["Number of Workers"] = req.body.NumberOfWorkers;
+    enterprise["Product Description"] = req.body.ProductDescription;
+    enterprise["Customers Description"] = req.body.CustomersDescription;
+    enterprise["Workforce Description"] = req.body.WorkforceDescription;
+    enterprise["Production Description"] = req.body.ProductionDescription;
+    enterprise["Sourcing Description"] = req.body.SourcingDescription;
+    enterprise["Supporting Services Description"] = req.body.SupportingServicesDescription;
+    enterprise["Other Outputs Description"] = req.body.OtherOutputsDescription;
+    enterprise["Distributing Description"] = req.body.DistributingDescription;
+    enterprise["Re-cycling Description"] = req.body.RecyclingDescription;
+    enterprise["Managing Description"] = req.body.ManagingDescription;
+    enterprise["Decision Making Description"] = req.body.DecisionMakingDescription;
+    enterprise["Steering Description"] = req.body.SteeringDescription;
+    enterprise["Ownership Description"] = req.body.OwnershipDescription;
+    enterprise["Business Model Description"] = req.body.BusinessModelDescription;
+    enterprise.History = req.body.History;
+    enterprise.Recognition = req.body.Recognition;
+    enterprise["Future Outlook"] = req.body.FutureOutlook;
+    enterprise.Researcher = req.body.Researcher;
+    enterprise["Last Updated"] = req.body.LastUpdated;
+    enterprise.otherImages = req.body.otherImages;
+
     enterprise.save().then(enterprise => res.json(enterprise));;
   })
 })
@@ -119,7 +162,7 @@ router.post('/', (req, res) => {
     "Primary Domain": req.body.PrimaryDomain,
     "Seconday Domain": req.body.SecondayDomain,
     "Organizational Entity Type": req.body.OrganizationalEntityType,
-    "Keyword Descriptiors": req.body.KeywordDescriptors,
+    "Keyword Descriptors": req.body.KeywordDescriptors,
     Location: req.body.Location,
     Country: req.body.Country,
     State: req.body.State,
