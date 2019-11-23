@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SectionTitle from "../PageComponents/SectionTitle";
 import styled from "styled-components";
 import CategoryType from "../PageComponents/CategoryType";
 import PropTypes from "prop-types";
@@ -226,9 +225,11 @@ class explore extends Component {
     return (
       <Page>
         <PageSection>
-          <div style={{ width: "75%", marginTop: "20px"}}>
+          <div style={{ width: "75%", marginTop: "20px", margin: "0 auto" }}>
             <div>
-              <SectionTitle label="Search" />
+              <h2 class="text-success" style={{ textAlign: "left" }}>
+                Search
+              </h2>
               <MuiThemeProvider>
                 <Search
                   value={this.state.searchTermText}
@@ -248,8 +249,8 @@ class explore extends Component {
         <br />
         <div style={{ paddingLeft: "27px" }}>
           <h2 class="text-success" style={{ textAlign: "left" }}>
-          Food Economy Domain
-        </h2>
+            Food Economy Domain
+          </h2>
         </div>
         <br />
         <div
@@ -298,7 +299,9 @@ const mapStateToProps = state => ({
   enterprise: state.enterprise
 });
 
-export default connect(
-  mapStateToProps,
-  { getEnterprises, getDomains, getField, getDomainEntries }
-)(explore);
+export default connect(mapStateToProps, {
+  getEnterprises,
+  getDomains,
+  getField,
+  getDomainEntries
+})(explore);
