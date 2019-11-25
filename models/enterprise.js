@@ -24,7 +24,6 @@ const entSchema = new Schema({
   "Date Founded": Number,
   "Economic Networks": String,
   Associations: String,
-  "Number of Employees": String,
   References: String,
   "Annual Revenue": String,
   "Number of Workers": String,

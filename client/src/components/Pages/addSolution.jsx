@@ -33,7 +33,6 @@ class addSolution extends Component {
         DateFounded: "0",
         EconomicNetworks: "",
         Associations: "",
-        NumberOfEmployees: "",
         References: "",
         AnnualRevenue: "",
         NumberOfWorkers: "",

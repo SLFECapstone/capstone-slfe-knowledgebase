@@ -123,7 +123,6 @@ router.post('/u/:id', (req, res) => {
     enterprise["Date Founded"] = req.body.DateFounded;
     enterprise["Economic Networks"] = req.body.EconomicNetworks;
     enterprise["Associations"] = req.body.Associations;
-    enterprise["Number of Employees"] = req.body.NumberOfEmployees;
     enterprise.References = req.body.References;
     enterprise["Annual Revenue"] = req.body.AnnualRevenue;
     enterprise["Number of Workers"] = req.body.NumberOfWorkers;
@@ -174,7 +173,7 @@ router.post('/', (req, res) => {
     "Date Founded": req.body.DateFounded,
     "Economic Networks": req.body.EconomicNetworks,
     "Associations": req.body.Associations,
-    "Number of Employees": req.body.NumberOfEmployees,
+    //"Number of Employees": req.body.NumberOfEmployees,
     References: req.body.References,
     "Annual Revenue": req.body.AnnualRevenue,
     "Number of Workers": req.body.NumberOfWorkers,
