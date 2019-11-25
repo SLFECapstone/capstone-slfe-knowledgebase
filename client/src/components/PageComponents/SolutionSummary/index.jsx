@@ -117,7 +117,7 @@ class SolutionSummary extends Component {
               <tr>
                 <td>{singleSolution["Primary Domain"]}</td>
                 <td>{singleSolution["Date Founded"]}</td>
-                <td>{singleSolution["Annual Revenu"]}</td>
+                <td>{singleSolution["Annual Revenue"]}</td>
                 <td>{singleSolution["Number of Employees"]}</td>
               </tr>
             </table>
