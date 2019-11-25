@@ -118,7 +118,7 @@ class explore extends Component {
                 textAlign: "center",
                 padding: "4px",
                 cursor: "pointer",
-                backgroundColor: "#00796B",
+                backgroundColor: "#009688",
                 position: "relative",
                 borderRadius: "10px",
                 boxShadow:
