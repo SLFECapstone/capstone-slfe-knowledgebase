@@ -28,7 +28,7 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-teal mb-4">
         <div className="container">
-          <div className="logo">
+          {/* <div className="logo">
             <Link to={'/'} className="logo--link">
               <img
                 className="logo--image"
@@ -36,6 +36,9 @@ class Navbar extends Component {
                 src="https://i.imgur.com/L2kMZ75.png"
               />
             </Link>
+          </div> */}
+          <div className='navbar-nav'>
+            <a href='/' className='nav-link font-weight-bold'>Sustainable Food Economy and Enterprise Knowledge Base</a>
           </div>
 
           <div className="collapse navbar-collapse" id="mobile-nav">
@@ -78,7 +81,7 @@ class Navbar extends Component {
                       <a href="/tempadminpage"> Admin Page </a>
                     </a>
                   ): null }
-                  <a className="dropdown-iUser Profiletem">
+                  <a className="dropdown-iUser Profiletem dropdown-item">
                     <i className="fa fa-sign-out" />
                     <a href='#' onClick={this.onLogout}> Logout </a>
                   </a>
