@@ -1,7 +1,7 @@
 .solution-summary {
     margin: 0rem 2rem;
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 70% 30%;
     grid-template-areas:
         "title title"
         "summary images";
@@ -41,6 +41,10 @@
     background-color: $text-icons;
 }
 
+.solution-summary .evaluation-radar-chart {
+    grid-area: radar-chart;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -69,6 +73,6 @@ tr, td {
     text-align: left;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
     background-color: $light-primary-color;
 }

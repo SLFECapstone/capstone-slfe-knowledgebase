@@ -87,6 +87,7 @@ class solution extends Component {
                </div>
                 <div className="content">
                     <Summary img={images} id={this.props.match.params.id} />
+                    {/*
                     <Tabs>
                         <div label="Details">
                             <h4>Customer Description</h4>
@@ -198,7 +199,9 @@ class solution extends Component {
                             </div>
                         </div>
                     </Tabs>
-                    <h2>References</h2>
+                    */}
+                    <h4 style={{padding:"10px", backgroundColor:`rgb(0,121,107)`, color:"white"}}>References</h4>
+                    {/*<h2>References</h2>*/}
                     {references.map(r => <p> {r} </p>)}
         </div>
         {/*
