@@ -4,6 +4,7 @@ import Tabs from "../PageComponents/SolutionTab";
 import Radar from "react-d3-radar";
 import { Accordion, AccordionItem } from "react-light-accordion";
 import "react-light-accordion/demo/css/index.css";
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getByID } from "../../actions/enterpriseActions";
 import PropTypes from "prop-types";
@@ -59,6 +60,15 @@ class solution extends Component {
     render() {
 
         const { singleSolution } = this.props.enterpriseData
+        const { isAuthenticated, user } = this.props.auth;
+
+        let canEditSolution = false;
+    
+        if (isAuthenticated) {
+          if (user.role === 'Administrator') {
+            canEditSolution = true;
+          }
+        }
 
         document.title = "Solution: " + singleSolution.Name;
          const images = this.generateSlideShow();
@@ -70,8 +80,14 @@ class solution extends Component {
 
         return (
             <div class="solution-page">
+                <div style={{ marginLeft: "85%" }}>
+                  { canEditSolution ? (
+                    <Link to={'/solution/edit/' + singleSolution._id}>Edit Solution</Link>
+                  ) : null }
+               </div>
                 <div className="content">
                     <Summary img={images} id={this.props.match.params.id} />
+                    {/*
                     <Tabs>
                         <div label="Details">
                             <h4>Customer Description</h4>
@@ -183,7 +199,9 @@ class solution extends Component {
                             </div>
                         </div>
                     </Tabs>
-                    <h2>References</h2>
+                    */}
+                    <h4 style={{padding:"10px", backgroundColor:`rgb(0,121,107)`, color:"white"}}>References</h4>
+                    {/*<h2>References</h2>*/}
                     {references.map(r => <p> {r} </p>)}
         </div>
         {/*
@@ -217,7 +235,8 @@ solution.PropTypes = {
 };
 
 const mapStateToProps = state => ({
-  enterpriseData: state.enterpriseData
+  enterpriseData: state.enterpriseData,
+  auth: state.auth
 });
 
 export default connect(

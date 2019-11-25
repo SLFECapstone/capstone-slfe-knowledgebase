@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import Tabs from "../PageComponents/SolutionTab";
 import { connect } from "react-redux";
 import { getDomainEntries } from "../../actions/domainActions";
-import { addSolutionFunc } from "../../actions/enterpriseActions";
+import { getByID, editSolutionFunc } from "../../actions/enterpriseActions";
 import { uploadFile } from '../../actions/fileActions';
 import { withRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 
-class addSolution extends Component {
+class editSolution extends Component {
   constructor(props) {
     super(props);
 
@@ -85,7 +85,7 @@ class addSolution extends Component {
 
   handleFormSubmit() {
     if (this.state.solution.Name !== "") {
-      const apiCall = this.props.addSolutionFunc(this.state.solution);
+      const apiCall = this.props.editSolutionFunc(this.state.solution);
       apiCall.then(data => {
         this.props.history.push('/solution/' + data.payload._id);
       });
@@ -142,7 +142,9 @@ class addSolution extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    document.title = "SLFE - Edit Solution";
+
     const domains = this.props.getDomainEntries();
     domains.then(data => {
       this.setState({
@@ -153,10 +155,62 @@ class addSolution extends Component {
         PrimaryDomain: data.payload[0].name
       })
     });
-  }
+    const { match } = this.props;
+    const solution = this.props.getByID(match.params.id)
 
-  componentDidMount() {
-    document.title = "SLFE - Add Solution";
+    solution.then(data => {
+      const newSolution = {
+        _id: data.payload._id,
+        Name: data.payload.Name,
+        ResponsibleOrganization: data.payload["Responsible Organization"],
+        ShortDescription: data.payload["Short Description"],
+        GeneralDescription: data.payload["General Description"],
+        SolutionType: data.payload["Solution Type"],
+        PrimaryDomain: data.payload["Primary Domain"],
+        SecondaryDomain: data.payload["Secondary Domain"],
+        OrganizationalEntityType: data.payload["Organizational Entity Type"],
+        KeywordDescriptors: data.payload["Keyword Descriptors"],
+        Location: data.payload.Location,
+        Country: data.payload.Country,
+        State: data.payload.State,
+        City: data.payload.City,
+        ScopeOfActivities: data.payload["Scope of Activities"],
+        OperationalArea: data.payload["Operational Area"],
+        ClimateZone: data.payload["Climate Zone"],
+        CityType: data.payload["City Type"],
+        EconomicNetworks: data.payload["Economic Networks"],
+        Associations: data.payload["Associations"],
+        NumberOfEmployees: data.payload["Number of Employees"],
+        References: data.payload["References"],
+        AnnualRevenue: data.payload["Annual Revenue"],
+        NumberOfWorkers: data.payload["Number of Workers"],
+        ProductDescription: data.payload["Product Description"],
+        CustomersDescription: data.payload["Customers Description"],
+        WorkforceDescription: data.payload["WorkforceDescription"],
+        ProductionDescription: data.payload["Production Description"],
+        SourcingDescription: data.payload["Sourcing Description"],
+        SupportingServicesDescription: data.payload["Supporting Services Description"],
+        OtherOutputsDescription: data.payload["Other Outputs Description"],
+        DistributingDescription: data.payload["Distributing Description"],
+        RecyclingDescription: data.payload["Recycling Description"],
+        ManagingDescription: data.payload["Managing Description"],
+        DecisionMakingDescription: data.payload["Decision Making Description"],
+        SteeringDescription: data.payload["Steering Description"],
+        OwnershipDescription: data.payload["Ownership Description"],
+        BusinessModelDescription: data.payload["Business Model Description"],
+        History: data.payload["History"],
+        Recognition: data.payload["Recognition"],
+        FutureOutlook: data.payload["Future Outlook"],
+        Researcher: data.payload["Researcher"],
+        otherImages: [],
+        References: "",
+        LastUpdated: ""
+      }
+
+      this.setState({
+          solution: newSolution
+      })
+    })
   }
 
   getCategoryItems() {
@@ -179,13 +233,19 @@ class addSolution extends Component {
     let uploadImagesList = this.state.solution.otherImages.map(function(image){
       return (<div><img src={image.img} width="70px" height="50px"></img><br /><input type="button" value="Delete"></input></div>);
     });
-    let referenceUploadList = this.state.solution.References.map(function(reference){
-      return (<div><a href={reference.ref} target="_blank">{reference.ref}</a><input type="button" value="Delete"></input></div>);
+
+
+    let refArr = this.state.solution.References
+    if (typeof this.state.solution.References === "string") {
+        refArr = this.state.solution.References.split("\n")
+    }
+    let referenceUploadList = refArr.map(function(reference){
+      return (<div><a href={reference} target="_blank">{reference}</a><input type="button" value="Delete"></input></div>);
     });
 
     return (
       <div >
-        <h1>Add New Solution</h1>
+        <h1>Edit Solution</h1>
         <br />
         <Tabs showCancelBtn={true} showSaveBtn={true} onSave={this.handleFormSubmit}>
           <div label="General">
@@ -315,7 +375,7 @@ class addSolution extends Component {
               </div>
             </div>
           </div>
-          <div label="Images">
+          {/* <div label="Images">
             <form onSubmit={this.handleImageUpload}>
               <div class="col-8">
                 <div class="form-group">
@@ -334,7 +394,7 @@ class addSolution extends Component {
             </form>
             <br /><br />
             {referenceUploadList}
-          </div>
+          </div> */}
         </Tabs>
       </div>
     )
@@ -347,5 +407,5 @@ const mapStateToProps = state => ({
 
 export default withRouter(connect(
   mapStateToProps,
-  { getDomainEntries, addSolutionFunc, uploadFile }
-)(addSolution));
+  { getDomainEntries, getByID, editSolutionFunc, uploadFile }
+)(editSolution));

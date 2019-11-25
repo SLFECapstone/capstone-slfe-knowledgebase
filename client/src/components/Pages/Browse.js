@@ -818,7 +818,7 @@ class Browse extends Component {
     let canAddSolution = false;
 
     if (isAuthenticated) {
-      if (user.role !== 'Member') {
+      if (user.role === 'Administrator') {
         canAddSolution = true;
       }
     }

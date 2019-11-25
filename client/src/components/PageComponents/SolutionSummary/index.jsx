@@ -4,6 +4,7 @@ import { getByID } from "../../../actions/enterpriseActions";
 import { editSolutionFunc } from "../../../actions/enterpriseActions";
 import PropTypes from "prop-types";
 import { Slide } from "react-slideshow-image";
+import Radar from "react-d3-radar";
 import CheckBox from "rc-checkbox";
 
 class SolutionSummary extends Component {
@@ -40,6 +41,20 @@ class SolutionSummary extends Component {
 
   }
 
+  // Convert latitude, longitude to cardinal directions with 4 decimal precision
+  // (because this is the resolution of a parcel of land) as a displayable
+  // value: lat (N,S), long (E, W)
+  toGPS = (latitude, longitude) => {
+
+    if (Number.isNaN(latitude) || Number.isNaN(longitude))
+      return "";
+
+    let lat = Math.abs(latitude).toFixed(4) + "° " + ((latitude < 0) ? "S" : "N");
+    let lon = Math.abs(longitude).toFixed(4) + "° " + ((longitude < 0) ? "W" : "E");
+    let output = lat + ", " + lon;
+    return output;
+  }
+
   render() {
     const properties = {
       infinite: true,
@@ -56,154 +71,242 @@ class SolutionSummary extends Component {
         canToggleFeatured = true;
       }
     }
-
     return (
-      <div class="solution-summary">
-        <div className="title">
-          <h1>{singleSolution.Name}</h1>
-        </div>
-        {typeof this.props.img !== "undefined" && (
-          <div>
-            <Slide
-              {...properties}
-              style={{ maxWidth: "500px", maxHeight: "300px" }}
-            >
-              {this.props.img}
-            </Slide>
+      <div>
+        <div className="row">
+          <div className="col-md-9">
+            <h1>{singleSolution.Name}</h1>
           </div>
-        )}
-        <div className="summary">
-          <table>
-            <colgroup>
-              <col style={{width:"30%"}} />
-              <col style={{width:"70%"}} />
-            </colgroup>
-            <tbody>
+          <div className="col-md-3">
+            <label>
+            &nbsp;&nbsp;
+            <CheckBox
+              name="Featured"
+              onChange={this.handleFeatureToggle}
+              disabled={!canToggleFeatured}
+              checked={this.state.isFeatured}
+            />
+            &nbsp; Featured Solution
+            </label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-9">
+            <h6>{singleSolution["Short Description"]}</h6>
+          </div>
+          <div className="col-md-3">
+            {singleSolution["City"]}, {singleSolution["State"]}, {singleSolution["Country"]}
+            <br/>
+            {this.toGPS(singleSolution["Lattitude"], singleSolution["Longitude"])}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-9">
+            <h5>Keywords: {singleSolution["Keyword Descriptors"]}</h5>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-9">
+            <table>
               <tr>
-                <th colspan="2" class="title">
-                  Summary
-                </th>
+                <td>Primary Domain</td>
+                <td>Date Founded</td>
+                <td>Annual Revenue</td>
+                <td>Number of Workers</td>
               </tr>
               <tr>
-                <td class="item">Name</td>
-                <td>{singleSolution["Name"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Responsible Organization</td>
-                <td>{singleSolution["Responsible Organization"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Short Description</td>
-                <td>{singleSolution["Short Description"]}</td>
-              </tr>
-              <tr>
-                <td class="item">General Description</td>
-                <td>{singleSolution["General Description"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Solution Type</td>
-                <td>{singleSolution["Solution Type"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Primary Domain</td>
                 <td>{singleSolution["Primary Domain"]}</td>
+                <td>{singleSolution["Date Founded"]}</td>
+                <td>{singleSolution["Annual Revenu"]}</td>
+                <td>{singleSolution["Number of Employees"]}</td>
+              </tr>
+            </table>
+          </div>
+          <div className="col-md-3">
+            {/*place holder*/}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-9">
+            {singleSolution["General Description"]}
+          </div>
+          <div className="col-md-3">
+            {/*place holder*/}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-2">
+            {/* padding */}
+          </div>
+          <div className="col-md-7">
+          <div className="container">
+            {typeof this.props.img !== "undefined" && (
+              <div>
+                <Slide
+                  {...properties}
+                  style={{ maxWidth: "500px", maxHeight: "450px" }}
+                >
+                  {this.props.img}
+                </Slide>
+              </div>
+            )}
+          </div>
+          </div>
+          <div className="col-md-3">
+            {/*place holder*/}
+          </div>
+        </div>
+        <div className="row">
+          &nbsp;
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <table>
+              <tr>
+                <td>Organizational Entity Type</td>
+                <td>Scope of Activities</td>
               </tr>
               <tr>
-                <td class="item">Secondary Domain</td>
-                <td>{singleSolution["Secondary Domain"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Organizational Entity Type</td>
                 <td>{singleSolution["Organizational Entity Type"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Keywords</td>
-                <td>{singleSolution["Keyword Descriptors"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Location</td>
-                <td>{singleSolution["Location"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Country</td>
-                <td>{singleSolution["Country"]}</td>
-              </tr>
-              <tr>
-                <td class="item">State</td>
-                <td>{singleSolution["State"]}</td>
-              </tr>
-              <tr>
-                <td class="item">City</td>
-                <td>{singleSolution["City"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Latitude</td>
-                <td>{singleSolution["Lattitude"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Longitude</td>
-                <td>{singleSolution["Longitude"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Scope of Activities</td>
                 <td>{singleSolution["Scope of Activities"]}</td>
               </tr>
               <tr>
-                <td class="item">Operational Area</td>
-                <td>{singleSolution["Operational Area"]}</td>
+                <td>Operational Area</td>
+                <td>Climate Zone</td>
               </tr>
               <tr>
-                <td class="item">Climate Zone</td>
+                <td>{singleSolution["Operational Area"]}</td>
                 <td>{singleSolution["Climate Zone"]}</td>
               </tr>
               <tr>
-                <td class="item">City Type</td>
+                <td>City Type</td>
+                <td>Secondary Domain</td>
+              </tr>
+              <tr>
                 <td>{singleSolution["City Type"]}</td>
+                <td>{singleSolution["Secondary Domain"]}</td>
               </tr>
               <tr>
-                <td class="item">Date Founded</td>
-                <td>{singleSolution["Date Founded"]}</td>
+                <td>Economic Network</td>
+                <td>Associations</td>
               </tr>
               <tr>
-                <td class="item">Economic Network</td>
                 <td>{singleSolution["Economic Networks"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Associations</td>
                 <td>{singleSolution["Associations"]}</td>
               </tr>
-              <tr>
-                <td class="item">Annual Revenue</td>
-                <td>{singleSolution["Annual Revenu"]}</td>
-              </tr>
-              <tr>
-                <td class="item">Number of Workers</td>
-                <td>{singleSolution["Number of Employees"]}</td>
-              </tr>
-              {/* This is not used for anything right now, and can be confusing.
-              <tr>
-                <td class="item"></td>
-                <td>
-                  <button>Download as PDF</button>
-                </td>
-              </tr>
-              */}
-              <tr>
-                <td colspan="2">
-                <label>
-                &nbsp;&nbsp;
-                <CheckBox
-                  name="Featured"
-                  onChange={this.handleFeatureToggle}
-                  disabled={!canToggleFeatured}
-                  checked={this.state.isFeatured}
+            </table>
+          </div>
+        </div>
+        <div className="row">
+          &nbsp;
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h4 style={{padding:"10px", backgroundColor:`rgb(0,121,107)`, color:"white"}}>Details</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h5>Customer</h5>
+            <p>{ singleSolution["Customer Description"] }</p>
+
+            <h5>Workforce</h5>
+            <p>{ singleSolution["Workforce Description"] }</p>
+
+            <h5>Production</h5>
+            <p>{ singleSolution["Production Description"] }</p>
+
+            <h5>Sourcing</h5>
+            <p>{ singleSolution["Sourcing Description"] }</p>
+
+            <h5>Supporting Services</h5>
+            <p>{ singleSolution["Supporting Services Description"] }</p>
+
+            <h5>Distributing</h5>
+            <p>{ singleSolution["Distributing Description"] }</p>
+
+            <h5>Recycling</h5>
+            <p>{ singleSolution["Re-Cyling Description"] }</p>
+
+            <h5>Managing</h5>
+            <p>{ singleSolution["Managing Description"] }</p>
+
+            <h5>Decision Making</h5>
+            <p>{ singleSolution["Decision Making Description"] }</p>
+
+            <h5>Steering</h5>
+            <p>{ singleSolution["Steering Description"] }</p>
+
+            <h5>Ownership</h5>
+            <p>{ singleSolution["Ownership Description"] }</p>
+
+            <h5>Business Model</h5>
+            <p>{ singleSolution["Business Model Description"] }</p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h4 style={{padding:"10px", backgroundColor:`rgb(0,121,107)`, color:"white"}}>Evaluation</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h5>Ownership and Decision Making</h5>
+            <p>{ singleSolution["Ownership and Decision Making Evaluation Text"] }</p>
+
+            <h5>Economic</h5>
+            <p>{ singleSolution["Economic Performance Evaluation Text"] }</p>
+
+            <h5>Environmental</h5>
+            <p>{ singleSolution["Environmental Performance Evaluation Text"] }</p>
+
+            <h5>Human and Social</h5>
+            <p>{ singleSolution["Human and Social Performance Evaluation Text"] }</p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-9">
+            <h5>Management</h5>
+            <p>{ singleSolution["Management Evaluation Text"] }</p>
+
+            <h5>Product Evaluation</h5>
+            <p>{ singleSolution["Product Evaluation Text"] }</p>
+          </div>
+          <div className="col-md-3">
+            <div class="evaluation-radar-chart">
+                <Radar
+                    width={500}
+                    height={500}
+                    padding={70}
+                    domainMax={10}
+                    highlighted={null}
+                    data={{
+                        variables: [
+                            { key: 'ownership', label: 'Ownership and Decision Making' },
+                            { key: 'economic', label: 'Economic' },
+                            { key: 'environment', label: 'Environmental' },
+                            { key: 'social', label: 'Human and Social' },
+                            { key: 'management', label: 'Management' },
+                            { key: 'evaluation', label: 'Product Evaluation' },
+                        ],
+                        sets: [
+                            {
+                                key: 'me',
+                                label: 'My Scores',
+                                values: {
+                                    ownership: singleSolution["Ownership and Decision Making Evaluation Rating"],
+                                    economic: singleSolution["Economic Performance Evaluation Rating"],
+                                    environment: singleSolution["Environmental Performance Evaluation Rating"],
+                                    social: singleSolution["Human and Social Performance Evaluation Rating"],
+                                    management: singleSolution["Management Evaluation Rating"],
+                                    evaluation: singleSolution["Product Evaluation Rating"],
+                                },
+                            }
+                        ],
+                    }}
                 />
-                &nbsp; Featured Solution
-                </label>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
       </div>
     );

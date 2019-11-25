@@ -1,11 +1,23 @@
 import axios from "axios";
-import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from "./types";
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, UPDATE_PROFILE_FAIL, UPDATE_PROFILE_SUCCESS, PROFILE_UPDATING, GET_USERS } from "./types";
+
+export const getUsers = () => dispatch => {  //add integration for query here
+  dispatch(setProfileLoading());
+  return axios
+  .get('/api/users/')
+  .then(res =>
+    dispatch({
+      type: GET_USERS,
+      payload: res.data
+    })
+  )
+};
 
 // Get current profile
 export const getProfile = (username) => dispatch => {
   dispatch(setProfileLoading());
   console.log(`/api/users/profile/${username}`);
-  axios.get(`/api/users/profile/${username}`).then(res =>
+  return axios.get(`/api/users/profile/${username}`).then(res =>
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -20,9 +32,55 @@ export const setProfileLoading = () => {
   };
 };
 
+// Profile updating
+export const setProfileUpdating = () => {
+  return {
+    type: PROFILE_UPDATING
+  };
+};
+
 // Clear profile
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
 };
+
+// Update profile information
+export const updateProfileFunc = (userProfile) => dispatch => {
+  dispatch(setProfileUpdating());
+  return axios.post('/api/users/updateprofile', { username: userProfile.username,
+    firstname: userProfile.firstname, lastname: userProfile.lastname,
+    organization: userProfile.organization, position: userProfile.position,
+    email: userProfile.email, biography: userProfile.biography })
+    .then(res =>
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch({
+        type: UPDATE_PROFILE_FAIL,
+        payload: err.response.data
+      })
+    })
+}
+
+// Update profile permission
+export const updateProfileRoleFunc = (userProfile) => dispatch => {
+  dispatch(setProfileUpdating());
+  return axios.post('/api/users/updateprofile/role', { username: userProfile.username, role: userProfile.role })
+    .then(res => 
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch({
+        type: UPDATE_PROFILE_FAIL,
+        payload: err.response.data
+      })
+    })
+}
