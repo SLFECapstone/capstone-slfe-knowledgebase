@@ -21,7 +21,8 @@ class Profile extends Component {
       lastname: '',
       organization: '',
       position: '',
-      email: ''
+      email: '',
+      biography: ''
     };
 
     this.handleEditClick = this.handleEditClick.bind(this);
@@ -30,6 +31,7 @@ class Profile extends Component {
     this.onChangeOrganization = this.onChangeOrganization.bind(this);
     this.onChangePosition = this.onChangePosition.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeBiography = this.onChangeBiography.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -50,24 +52,30 @@ class Profile extends Component {
 			lastname: e.target.value
 		});
   }
-  
+
   onChangeOrganization(e) {
 		this.setState({
 			organization: e.target.value
 		});
   }
-  
+
   onChangePosition(e) {
 		this.setState({
 			position: e.target.value
 		});
   }
-  
+
   onChangeEmail(e) {
 		this.setState({
 			email: e.target.value
 		});
 	}
+
+  onChangeBiography(e) {
+    this.setState({
+      biography: e.target.value
+    });
+  }
 
 	onSubmit(e) {
 		e.preventDefault();
@@ -76,7 +84,10 @@ class Profile extends Component {
     if (isAuthenticated)
     {
       console.log("authenticated profile update form")
-      const apiCall = this.props.updateProfileFunc({ username: user.username, firstname: this.state.firstname, lastname: this.state.lastname, organization: this.state.organization, position: this.state.position, email: this.state.email });
+      const apiCall = this.props.updateProfileFunc({ username: user.username,
+        firstname: this.state.firstname, lastname: this.state.lastname,
+        organization: this.state.organization, position: this.state.position,
+        email: this.state.email, biography: this.state.biography });
       apiCall.then(data => {
         this.props.history.push('/');
       });
@@ -93,7 +104,8 @@ class Profile extends Component {
         lastname: profile.last_name,
         organization: profile.organization,
         position: profile.position,
-        email: profile.email_address
+        email: profile.email_address,
+        biography: profile.biography
       });
     });
   }
@@ -129,7 +141,7 @@ class Profile extends Component {
 						    <div className="form-group">
 							    <div className="input-group">
 								    <span className="input-group-addon">
-									    <i className="fa fa-user"/> First Name 
+									    <i className="fa fa-user"/> First Name
 								    </span>
                     <input
                     type="text"
@@ -144,7 +156,7 @@ class Profile extends Component {
 						    <div className="form-group">
 							    <div className="input-group">
 								    <span className="input-group-addon">
-									    <i className="fa fa-user-o"/> Last Name 
+									    <i className="fa fa-user-o"/> Last Name
 								    </span>
 								    <input
 									  type="text"
@@ -159,7 +171,7 @@ class Profile extends Component {
                 <div className="form-group">
 							    <div className="input-group">
 								    <span className="input-group-addon">
-									    <i className="fa fa-sitemap"/> Organization 
+									    <i className="fa fa-sitemap"/> Organization
 								    </span>
 								    <input
 									  type="text"
@@ -174,7 +186,7 @@ class Profile extends Component {
                 <div className="form-group">
 							    <div className="input-group">
 								    <span className="input-group-addon">
-									    <i className="fa fa-briefcase"/> Position 
+									    <i className="fa fa-briefcase"/> Position
 								    </span>
 								    <input
 									  type="text"
@@ -189,7 +201,7 @@ class Profile extends Component {
                 <div className="form-group">
 							    <div className="input-group">
 								    <span className="input-group-addon">
-									    <i className="fa fa-envelope"/> E-mail 
+									    <i className="fa fa-envelope"/> E-mail
 								    </span>
 								    <input
 									  type="text"
@@ -201,6 +213,21 @@ class Profile extends Component {
 								    />
 							    </div>
 						    </div>
+                <div className="form-group">
+                  <div className="input-group">
+                    <span className="input-group-addon">
+                      <i className="fa fa-pencil"/> Biography
+                    </span>
+                    <input
+                    type="text"
+                    className="form-control"
+                    name="biography"
+                    value={this.state.biography}
+                    required="required"
+                    onChange={this.onChangeBiography}
+                    />
+                  </div>
+                </div>
 						    <div className="form-group">
 							    <button
 								  type="submit"
@@ -216,7 +243,7 @@ class Profile extends Component {
               { isOwnProfile ? (
               <div>
                 <h2>Welcome to your Profile { userName }</h2>
-                <div><button onClick={this.handleEditClick}>Edit Profile</button></div> 
+                <div><button onClick={this.handleEditClick}>Edit Profile</button></div>
                 <div>&nbsp;</div>
               </div>
               ) : (<h2>{ userName }, welcome to { profile.username }'s Profile</h2>)}
@@ -225,9 +252,10 @@ class Profile extends Component {
                 <div>Organization: { profile.organization ? profile.organization : "" }</div>
                 <div>Position: { profile.position ? profile.position : "" } </div>
                 <div>Email: { profile.email_address ? profile.email_address : "" } </div>
+                <div>Biography: { profile.biography ? profile.biography : "" } </div>
               </body>
             </div>)}
-          
+
           </div>
         ) : (<div></div>)
         }

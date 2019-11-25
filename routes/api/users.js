@@ -25,7 +25,7 @@ router.get('/profile/:username/', (req, res)=>{
 });
 
 router.post('/updateprofile', (req, res) => {
-  let { username, firstname, lastname, organization, position, email } = req.body;
+  let { username, firstname, lastname, organization, position, email, biography } = req.body;
 
   // Search the database for the given username
   User.findOne({ username })
@@ -41,15 +41,17 @@ router.post('/updateprofile', (req, res) => {
       user.organization = organization;
       user.position = position;
       user.email_address = email;
+      user.biography = biography;
       // Mark modifications to ensure update is staged
       user.markModified('first_name');
       user.markModified('last_name');
       user.markModified('organization');
       user.markModified('position');
       user.markModified('email_address');
+      user.markModified('biography');
       // Save to database or error
       user.save(function (err, user) {
-        if(err) { 
+        if(err) {
           console.log('why')
           console.log(err)
           res.status(400).json({ message: 'Database update error'});
