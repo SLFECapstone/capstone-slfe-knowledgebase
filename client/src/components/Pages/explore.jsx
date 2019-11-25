@@ -170,10 +170,9 @@ class explore extends Component {
                   </h5>
                 </CardSubtitle>
                 <FeatCardText>
-                  {this.state.popularSolutions[i]["General Description"]}
+                  {this.state.popularSolutions[i]["Short Description"]}
                 </FeatCardText>
                 <a
-                  style={{ color: "blue" }}
                   href={`/solution/${this.state.popularSolutions[i]._id}`}
                 >
                   <Button outline color="success">
