@@ -21,7 +21,7 @@ const entSchema = new Schema({
   "Operational Area": String,
   "Climate Zone": String,
   "City Type": String,
-  "Date Founded": Number,
+  "Date Founded": String,
   "Economic Networks": String,
   Associations: String,
   References: String,
