@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getByID } from "../../../actions/enterpriseActions";
-import { editSolutionFunc } from "../../../actions/enterpriseActions";
+import { setIsFeaturedOfSolutionFunc } from "../../../actions/enterpriseActions";
 import PropTypes from "prop-types";
 import { Slide } from "react-slideshow-image";
 import Radar from "react-d3-radar";
@@ -37,7 +37,7 @@ class SolutionSummary extends Component {
       isFeatured: e.target.checked
     });
     this.props.enterpriseData.singleSolution.isFeatured = e.target.checked;
-    const apiCall = this.props.editSolutionFunc(this.props.enterpriseData.singleSolution);
+    const apiCall = this.props.setIsFeaturedOfSolutionFunc(this.props.enterpriseData.singleSolution);
 
   }
 
@@ -117,8 +117,8 @@ class SolutionSummary extends Component {
               <tr>
                 <td>{singleSolution["Primary Domain"]}</td>
                 <td>{singleSolution["Date Founded"]}</td>
-                <td>{singleSolution["Annual Revenu"]}</td>
-                <td>{singleSolution["Number of Employees"]}</td>
+                <td>{singleSolution["Annual Revenue"]}</td>
+                <td>{singleSolution["Number of Workers"]}</td>
               </tr>
             </table>
           </div>
@@ -325,5 +325,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getByID, editSolutionFunc }
+  { getByID, setIsFeaturedOfSolutionFunc }
 )(SolutionSummary);
