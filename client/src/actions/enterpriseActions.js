@@ -41,6 +41,14 @@ export const getSolutions = () => dispatch => {  //add integration for query her
   )
 };
 
+export const setIsFeaturedOfSolutionFunc = (solution) => dispatch => {
+  dispatch(setResponseLoading());
+  return axios.post('/api/enterprises/set_is_featured/' + solution._id, solution).then(res => dispatch({
+    type: UPDATE_SOLUTION,
+    payload: res.data
+  }))
+};
+
 export const editSolutionFunc = (solution) => dispatch => {
   dispatch(setResponseLoading());
   return axios.post('/api/enterprises/u/' + solution._id, solution).then(res => dispatch({

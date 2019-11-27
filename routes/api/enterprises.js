@@ -97,6 +97,18 @@ router.get('/update_aws_link', (req, res) => {
   })
 });
 
+router.post('/set_is_featured/:id', (req, res) => {
+  Enterprise.findById(req.params.id, function(err, enterprise){
+    if(err){
+      res.send("error occured");
+      next();
+    }
+    enterprise.isFeatured = req.body.isFeatured
+
+    enterprise.save().then(enterprise => res.json(enterprise));;
+  })
+});
+
 router.post('/u/:id', (req, res) => {
   Enterprise.findById(req.params.id, function(err, enterprise){
     if(err){
