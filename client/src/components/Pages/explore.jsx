@@ -17,7 +17,8 @@ import {
   CardSubtitle,
   Button,
   Row,
-  Col
+  Col,
+  CardFooter
 } from "reactstrap";
 import Map from "./map.jsx";
 
@@ -35,7 +36,7 @@ const PageSection = styled.span`
 `;
 
 const FeatCard = styled(Card)`
-  height: 490px;
+  height: 540px;
   margin: 25px;
 `;
 
@@ -56,18 +57,22 @@ const FeatCardImage = styled(CardImg)`
 
 const DomainCard = styled(Card)`
   cursor: pointer;
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  height: 325px;
   margin: 25px 0 0 25px;
   transition: all 0.2s;
+  background-color: #d6e0d7;
   &:hover {
-    background-color: #d6e0d7;
+    background-color: #00796b;
     transform: scale(1.1);
     font-weight: bold;
+    color: white;
   }
 `;
 
-// #d6e0d7
+const DomainCardImage = styled(CardImg)`
+  margin-bottom: 5px;
+`;
 
 class explore extends Component {
   constructor(props) {
@@ -93,8 +98,6 @@ class explore extends Component {
   getCategoryItems = () => {
     const { domains = [] } = this.state;
 
-    const sampleImage = "http://placehold.jp/100x100.png";
-
     return domains.map(domain => {
       return (
         <Col xs="auto" sm="3" md="auto">
@@ -106,12 +109,15 @@ class explore extends Component {
             <CardBody>
               <CardTitle>
                 <h4>
-                  <p class="text-success" style={{ textAlign: "center"}}>
-                    {domain.name}
-                  </p>
+                  <p style={{ textAlign: "center" }}>{domain.name}</p>
                 </h4>
               </CardTitle>
-              <CardImg top width="100%" src={sampleImage} alt={domain.name} />
+              <DomainCardImage
+                top
+                width="100%"
+                src={domain.image}
+                alt={domain.name}
+              />
 
               <CardText>{domain.description}</CardText>
             </CardBody>
@@ -154,12 +160,14 @@ class explore extends Component {
                 <FeatCardText>
                   {this.state.popularSolutions[i]["Short Description"]}
                 </FeatCardText>
+              </CardBody>
+              <CardFooter>
                 <a href={`/solution/${this.state.popularSolutions[i]._id}`}>
                   <Button outline color="success">
                     Learn More
                   </Button>
                 </a>
-              </CardBody>
+              </CardFooter>
             </FeatCard>
           );
         }
