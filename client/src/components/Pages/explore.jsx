@@ -15,7 +15,9 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
+  Row,
+  Col
 } from "reactstrap";
 import Map from "./map.jsx";
 
@@ -32,7 +34,7 @@ const PageSection = styled.span`
   width: 95%;
 `;
 
-const ModifiedCard = styled(Card)`
+const FeatCard = styled(Card)`
   height: 490px;
   margin: 25px;
 `;
@@ -51,6 +53,21 @@ const FeatCardText = styled(CardText)`
 const FeatCardImage = styled(CardImg)`
   margin-bottom: 5px;
 `;
+
+const DomainCard = styled(Card)`
+  cursor: pointer;
+  width: 300px;
+  height: 400px;
+  margin: 25px 0 0 25px;
+  transition: all 0.2s;
+  &:hover {
+    background-color: #d6e0d7;
+    transform: scale(1.1);
+    font-weight: bold;
+  }
+`;
+
+// #d6e0d7
 
 class explore extends Component {
   constructor(props) {
@@ -74,69 +91,34 @@ class explore extends Component {
   }
 
   getCategoryItems = () => {
-    var categoryTypes = [];
-    var sorted_cat = [];
-    if (this.state.domains) {
-      const { domains } = this.state;
-      // The categories must be hard-coded order per Nigel request #190 in Taiga.
-      sorted_cat.push(domains.find(c => c.name === "Production"));
-      sorted_cat.push(domains.find(c => c.name === "Processing"));
-      sorted_cat.push(domains.find(c => c.name === "Distribution"));
-      sorted_cat.push(domains.find(c => c.name === "Outlets"));
-      sorted_cat.push(domains.find(c => c.name === "Recycling"));
-      sorted_cat.push(domains.find(c => c.name === "Integrating"));
-      this.state.domains = sorted_cat;
+    const { domains = [] } = this.state;
 
-      const addText = [
-        "Production: Growing, harvesting, extracting, collecting, …",
+    const sampleImage = "http://placehold.jp/100x100.png";
 
-        "Processing: Manufacturing, assembling, baking, cooking, constructing, …",
+    return domains.map(domain => {
+      return (
+        <Col xs="auto" sm="3" md="auto">
+          <DomainCard
+            onClick={() =>
+              this.props.history.push(`browse?primaryDomain=${domain.name}`)
+            }
+          >
+            <CardBody>
+              <CardTitle>
+                <h4>
+                  <p class="text-success" style={{ textAlign: "center"}}>
+                    {domain.name}
+                  </p>
+                </h4>
+              </CardTitle>
+              <CardImg top width="100%" src={sampleImage} alt={domain.name} />
 
-        "Distribution: Storing, transporting, (re-packaging), aggregating …",
-
-        "Outlets: Delivering, retailing, serving, …",
-
-        "Recycling: Collecting, sorting, repurposing, …",
-
-        "Integrating: Supporting, coordinating, financing, …"
-      ];
-
-      console.log("domainnnnn", this.state.domain);
-
-      for (var i = 0; i < this.state.domains.length; i++) {
-        categoryTypes.push(
-          <div style={{ cursor: "pointer" }}>
-            <CategoryType
-              history={this.props.history}
-              styleObject={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "center",
-                color: "white",
-                width: "200px",
-                textAlign: "center",
-                padding: "4px",
-                cursor: "pointer",
-                backgroundColor: "#009688",
-                position: "relative",
-                borderRadius: "10px",
-                boxShadow:
-                  "0px 10px 0px 0px rgb(2, 77, 68), 0px 0px 20px 0px #bbb",
-                transition: "all 0.3s"
-              }}
-              image={this.state.domains[i].image}
-              label={`${addText.filter(d =>
-                d.includes(this.state.domains[i].name)
-              )}`}
-              type="primaryDomain"
-            />
-          </div>
-        );
-      }
-    }
-
-    return categoryTypes;
+              <CardText>{domain.description}</CardText>
+            </CardBody>
+          </DomainCard>
+        </Col>
+      );
+    });
   };
 
   getPopularItems = () => {
@@ -147,7 +129,7 @@ class explore extends Component {
         // Only show featured solutions
         if (this.state.popularSolutions[i].isFeatured) {
           popularItems.push(
-            <ModifiedCard>
+            <FeatCard>
               <CardBody>
                 <FeatCardTitle>
                   <h3>
@@ -172,15 +154,13 @@ class explore extends Component {
                 <FeatCardText>
                   {this.state.popularSolutions[i]["Short Description"]}
                 </FeatCardText>
-                <a
-                  href={`/solution/${this.state.popularSolutions[i]._id}`}
-                >
+                <a href={`/solution/${this.state.popularSolutions[i]._id}`}>
                   <Button outline color="success">
                     Learn More
                   </Button>
                 </a>
               </CardBody>
-            </ModifiedCard>
+            </FeatCard>
           );
         }
       }
@@ -192,8 +172,34 @@ class explore extends Component {
   componentWillMount() {
     const domains = this.props.getDomainEntries();
     domains.then(data => {
+      const sorted_cat = [];
+      sorted_cat.push(data.payload.find(c => c.name === "Production"));
+      sorted_cat.push(data.payload.find(c => c.name === "Processing"));
+      sorted_cat.push(data.payload.find(c => c.name === "Distribution"));
+      sorted_cat.push(data.payload.find(c => c.name === "Outlets"));
+      sorted_cat.push(data.payload.find(c => c.name === "Recycling"));
+      sorted_cat.push(data.payload.find(c => c.name === "Integrating"));
+
+      const domainDescriptions = {
+        Production: "Growing, harvesting, extracting, collecting, …",
+
+        Processing:
+          "Manufacturing, assembling, baking, cooking, constructing, …",
+
+        Distribution: "Storing, transporting, (re-packaging), aggregating …",
+
+        Outlets: "Delivering, retailing, serving, …",
+
+        Recycling: "Collecting, sorting, repurposing, …",
+
+        Integrating: "Supporting, coordinating, financing, …"
+      };
+      sorted_cat.map(
+        item => (item.description = domainDescriptions[item.name])
+      );
+
       this.setState({
-        domains: data.payload
+        domains: sorted_cat
       });
     });
     const poulars = this.props.getEnterprises();
@@ -251,18 +257,7 @@ class explore extends Component {
             Food Economy Domain
           </h2>
         </div>
-        <br />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            marginRight: "10px",
-            width: "100%"
-          }}
-        >
-          {categoryList}
-        </div>
+        <Row>{categoryList}</Row>
         <br />
         <div style={{ paddingLeft: "27px" }}>
           <h2 class="text-success" style={{ textAlign: "left" }}>
