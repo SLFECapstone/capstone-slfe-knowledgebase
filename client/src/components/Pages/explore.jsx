@@ -188,24 +188,6 @@ class explore extends Component {
       sorted_cat.push(data.payload.find(c => c.name === "Recycling"));
       sorted_cat.push(data.payload.find(c => c.name === "Integrating"));
 
-      const domainDescriptions = {
-        Production: "Growing, harvesting, extracting, collecting, …",
-
-        Processing:
-          "Manufacturing, assembling, baking, cooking, constructing, …",
-
-        Distribution: "Storing, transporting, (re-packaging), aggregating …",
-
-        Outlets: "Delivering, retailing, serving, …",
-
-        Recycling: "Collecting, sorting, repurposing, …",
-
-        Integrating: "Supporting, coordinating, financing, …"
-      };
-      sorted_cat.map(
-        item => (item.description = domainDescriptions[item.name])
-      );
-
       this.setState({
         domains: sorted_cat
       });
