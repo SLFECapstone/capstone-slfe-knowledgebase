@@ -37,8 +37,8 @@ class Navbar extends Component {
               />
             </Link>
           </div> */}
-          <div className='navbar-nav'>
-            <a href='/' className='nav-link font-weight-bold'>Sustainable Food Economy and Enterprise Knowledge Base</a>
+          <div className='navbar-nav banner-title'>
+            <a href='/' className='font-weight-bold'>Sustainable Food Economy and Enterprise Knowledge Base</a>
           </div>
 
           <div className="collapse navbar-collapse" id="mobile-nav">
