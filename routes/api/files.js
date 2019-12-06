@@ -1,9 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const aws = require('aws-sdk');
 const router = express.Router();
 const multer  = require('multer');
 const upload = multer();
 const uuidv1 = require('uuid/v1');
+const remoteHost = process.env.REMOTE_HOST;
 
 
 router.post('/upload', upload.single('file'), (req, res)=>{
@@ -28,10 +31,10 @@ router.post('/upload', upload.single('file'), (req, res)=>{
           success: false
         });
       }
-  
+
       res.json({
         success: true,
-        url: 'https://' + 's3-' + req.app.locals.S3_BUCKET_REGION + '.amazonaws.com/' + req.app.locals.S3_BUCKET_NAME + '/' + fileName
+        url: remoteHost + fileName
       })
     });
   });
