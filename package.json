@@ -23,7 +23,7 @@
   "homepage": "https://github.com/panza8484/capstone-slfe-knowledgebase#readme",
   "dependencies": {
     "aws-sdk": "^2.435.0",
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "dotenv": "^6.0.0",
